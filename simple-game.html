@@ -1,0 +1,2394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI替代危机：职场生存战</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50%' y='50%' text-anchor='middle' dominant-baseline='middle'>🎮</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .game-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .game-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .game-main {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 5px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .stat-item {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .event-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+        }
+
+        .event-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .event-description {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .options-grid {
+            display: grid;
+            gap: 10px;
+        }
+
+        .option-button {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .option-button:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .option-button:active {
+            transform: translateY(0);
+        }
+
+        /* 薪资变化浮动动画 */
+        .salary-change-toast {
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%) translateY(0);
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            z-index: 1000;
+            animation: salaryFloatUp 1.5s ease-out forwards;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .salary-change-toast.up {
+            background: linear-gradient(135deg, #43a047, #2e7d32);
+            color: white;
+        }
+
+        .salary-change-toast.down {
+            background: linear-gradient(135deg, #e53935, #c62828);
+            color: white;
+        }
+
+        @keyframes salaryFloatUp {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            20% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+            80% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(-30px);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-50px);
+            }
+        }
+
+        /* 成就解锁动画 */
+        .achievement-unlock {
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%) scale(0.5);
+            background: linear-gradient(135deg, #ffd700, #ffab00);
+            color: #333;
+            padding: 20px 40px;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            z-index: 1000;
+            animation: achievementPop 2s ease-out forwards;
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        @keyframes achievementPop {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1.1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) scale(1);
+            }
+        }
+
+        .result-card {
+            background: #e8f5e8;
+            border: 1px solid #c8e6c9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .result-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2e7d32;
+        }
+
+        .result-description {
+            color: #2e7d32;
+            line-height: 1.6;
+        }
+
+        .game-over-screen {
+            text-align: center;
+            padding: 50px;
+            color: #d32f2f;
+        }
+
+        .game-over-screen h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .restart-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .restart-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .game-info {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .game-main {
+                grid-template-columns: 1fr;
+            }
+
+            .game-header h1 {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="game-header">
+            <h1>🧟 AI替代危机：职场生存战 🧟</h1>
+            <p>在AI浪潮中，你能坚持多久不被替代？</p>
+        </header>
+
+        <main class="game-main">
+            <aside class="sidebar">
+                <div class="section-title">🎭 角色状态</div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-label">👨💼 职级</div>
+                        <div class="stat-value" id="rank">P5</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">💰 薪资</div>
+                        <div class="stat-value" id="salary">25k</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">🧠 技术能力</div>
+                        <div class="stat-value" id="tech">60</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">👥 人际关系</div>
+                        <div class="stat-value" id="social">50</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">🚀 创新能力</div>
+                        <div class="stat-value" id="innovation">45</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">📊 技术匹配度</div>
+                        <div class="stat-value" id="techMatch">70</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">🤝 团队贡献</div>
+                        <div class="stat-value" id="teamContribution">60</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">🤖 AI适应力</div>
+                        <div class="stat-value" id="aiAdaptability">50</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">🌐 市场竞争力</div>
+                        <div class="stat-value" id="marketValue">65</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">⚠️ 警告次数</div>
+                        <div class="stat-value" id="warnings">0</div>
+                    </div>
+                </div>
+
+                <div class="section-title">🎯 成就</div>
+                <div class="stats-grid" id="achievements-grid">
+                    <!-- 成就动态生成，解锁才显示 -->
+                    <div id="achievement-list"></div>
+                </div>
+                <style>
+                    .achievement-item {
+                        background: #f8f9fa;
+                        padding: 10px;
+                        border-radius: 8px;
+                        text-align: center;
+                        transition: all 0.3s;
+                    }
+                    .achievement-item.unlocked {
+                        background: #e8f5e9;
+                        border: 2px solid #43a047;
+                    }
+                    .achievement-label {
+                        font-size: 0.8rem;
+                        color: #666;
+                        margin-bottom: 5px;
+                    }
+                    .achievement-value {
+                        font-size: 1.2rem;
+                    }
+                    .achievement-item.unlocked .achievement-value {
+                        color: #43a047;
+                        font-weight: bold;
+                    }
+                </style>
+            </aside>
+
+            <section class="main-content">
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
+                    <span style="font-size: 1.2rem; font-weight: bold; color: #667eea;">📅 生存天数: <span id="days-main">0</span></span>
+                    <span style="margin-left: 30px; font-size: 1.2rem; font-weight: bold; color: #667eea;">📅 <span id="quarterYear-main">Q1 Y1</span></span>
+                </div>
+                <div id="game-container">
+                    <div id="event-section">
+                        <div class="event-card">
+                            <div class="event-title">🎉 欢迎来到AI替代危机：职场生存战！</div>
+                            <div class="event-description">
+                                AI浪潮席卷互联网行业，你的岗位随时可能被AI替代。请选择你的初始岗位，开始你的职场生存之旅！
+                            </div>
+                            <div class="section-title" style="margin-top: 20px; margin-bottom: 10px; font-size: 1.1rem;">选择你的岗位：</div>
+                            <div class="options-grid">
+                                <button class="option-button" onclick="startGameWithRole('frontend')">
+                                    👨‍💻 前端开发 <br>
+                                    <small>技术匹配度高，AI替代风险中等</small>
+                                </button>
+                                <button class="option-button" onclick="startGameWithRole('backend')">
+                                    🔧 后端开发 <br>
+                                    <small>架构复杂，AI替代风险较低</small>
+                                </button>
+                                <button class="option-button" onclick="startGameWithRole('product')">
+                                    📦 产品经理 <br>
+                                    <small>需要沟通，AI替代风险低</small>
+                                </button>
+                                <button class="option-button" onclick="startGameWithRole('designer')">
+                                    🎨 UI设计师 <br>
+                                    <small>AI生成快，替代风险极高</small>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="result-section" style="display: none;"></div>
+                </div>
+            </section>
+        </main>
+
+        <section class="game-info">
+            <div class="section-title">📖 游戏说明</div>
+            <div class="info-grid">
+                <div>
+                    <h4>🎯 游戏目标</h4>
+                    <p>在AI浪潮中尽可能长时间生存，提升职级和薪资，避免被替代。</p>
+                </div>
+                <div>
+                    <h4>💡 游戏技巧</h4>
+                    <p>合理选择应对职场事件，提升关键技能，与同事搞好关系。</p>
+                </div>
+                <div>
+                    <h4>⚠️ 游戏危机</h4>
+                    <p>AI会不断学习和进步，你的技能如果跟不上，就会被替代。</p>
+                </div>
+                <div>
+                    <h4>🏆 游戏成就</h4>
+                    <p>完成各种挑战，获得成就和荣誉，成为职场传奇。</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // 全局变量
+        let gameState;
+
+        // 角色初始属性配置
+        const roleConfigs = {
+            frontend: {
+                name: '前端开发',
+                rank: 'P5',
+                salary: 25000,
+                techSkill: 65,
+                socialSkill: 45,
+                innovationSkill: 50,
+                hiddenScores: {
+                    techMatch: 75,
+                    teamContribution: 55,
+                    aiAdaptability: 55,
+                    marketValue: 65
+                },
+                warnings: 0,
+                description: '拥抱变化，快速学习是你的优势'
+            },
+            backend: {
+                name: '后端开发',
+                rank: 'P5',
+                salary: 26000,
+                techSkill: 70,
+                socialSkill: 40,
+                innovationSkill: 45,
+                hiddenScores: {
+                    techMatch: 72,
+                    teamContribution: 65,
+                    aiAdaptability: 45,
+                    marketValue: 68
+                },
+                warnings: 0,
+                description: '架构复杂，业务深度高，AI难以完全替代'
+            },
+            product: {
+                name: '产品经理',
+                rank: 'P5',
+                salary: 27000,
+                techSkill: 45,
+                socialSkill: 75,
+                innovationSkill: 65,
+                hiddenScores: {
+                    techMatch: 60,
+                    teamContribution: 80,
+                    aiAdaptability: 50,
+                    marketValue: 70
+                },
+                warnings: 0,
+                description: '需要用户理解和沟通，AI难以替代'
+            },
+            designer: {
+                name: 'UI设计师',
+                rank: 'P5',
+                salary: 24000,
+                techSkill: 50,
+                socialSkill: 50,
+                innovationSkill: 75,
+                hiddenScores: {
+                    techMatch: 65,
+                    teamContribution: 55,
+                    aiAdaptability: 40,
+                    marketValue: 60
+                },
+                warnings: 0,
+                description: 'AI生成速度快，需要持续提升创意能力'
+            }
+        };
+
+        // 根据角色开始游戏
+        window.startGameWithRole = function(roleKey) {
+            console.log('startGameWithRole called:', roleKey);
+            const config = roleConfigs[roleKey];
+            gameState = {
+                rank: config.rank,
+                salary: config.salary,
+                techSkill: config.techSkill,
+                socialSkill: config.socialSkill,
+                innovationSkill: config.innovationSkill,
+                days: 1,
+                quarter: 1,
+                year: 1,
+                isGameOver: false,
+                roleKey: roleKey,
+                role: config.name,
+                hiddenScores: {...config.hiddenScores},
+                warnings: 0,
+                achievements: []
+            };
+            updateUI();
+            generateEvent();
+        };
+
+        // 游戏状态初始化（默认角色）
+        window.startGame = function() {
+            console.log('startGame called (default role)');
+            startGameWithRole('frontend');
+        };
+        // 保持兼容性
+        function startGame() {
+            window.startGame();
+        }
+
+        // 成就定义
+        const achievementList = [
+            { id: 'ach-new', label: '🏆 职场新人', condition: () => true, unlocked: true },
+            { id: 'ach-ai', label: '🤖 AI协作大师', condition: () => gameState?.hiddenScores?.aiAdaptability >= 80 },
+            { id: 'ach-quarter', label: '💯 坚持一季度', condition: () => gameState?.days >= 90 },
+            { id: 'ach-year', label: '📅 坚持一年', condition: () => gameState?.days >= 365 },
+            { id: 'ach-threeyears', label: '🚀 三年生存者', condition: () => gameState?.days >= 1095 },
+            { id: 'ach-p6', label: '⭐️ P6晋升', condition: () => gameState?.rank === 'P6' || gameState?.rank === 'M1' || gameState?.rank === 'P7' },
+            { id: 'ach-easter', label: '🥚 找到彩蛋', condition: () => false, special: true, unlocked: false },
+            { id: 'ach-manager', label: '💼 管理岗', condition: () => gameState?.rank === 'M1' }
+        ];
+
+        // 重新渲染成就列表，只显示解锁的 + 当前可以解锁的
+        function updateAchievements() {
+            const container = document.getElementById('achievement-list');
+            if (!container) return;
+
+            let html = '';
+            let newlyUnlocked = [];
+
+            achievementList.forEach(ach => {
+                if (!ach.unlocked && typeof ach.condition === 'function' && ach.condition()) {
+                    ach.unlocked = true;
+                    newlyUnlocked.push(ach.label);
+                }
+
+                // 只显示已经解锁的
+                if (ach.unlocked) {
+                    html += `
+                        <div class="achievement-item ${ach.unlocked ? 'unlocked' : ''}">
+                            <div class="achievement-label">${ach.label}</div>
+                            <div class="achievement-value">✅</div>
+                        </div>
+                    `;
+                }
+            });
+
+            // 如果还没有解锁任何，显示提示
+            if (!html) {
+                html = '<div style="text-align: center; color: #999; padding: 20px;">解锁成就后会显示在这里</div>';
+            }
+
+            container.innerHTML = html;
+
+            // 弹出新解锁成就动画
+            newlyUnlocked.forEach(label => {
+                showAchievementUnlock(label.replace(/^[🏆🤖💯📅🚀⭐️🥚💼]\s+/, ''));
+                playSound('unlock');
+            });
+        }
+
+        // 解锁彩蛋成就
+        function unlockEasterAchievement() {
+            const ach = achievementList.find(a => a.id === 'ach-easter');
+            if (ach && !ach.unlocked) {
+                ach.unlocked = true;
+                updateAchievements();
+            }
+        }
+
+        // 音效系统 - 使用极短音效（100ms以内）
+        const sounds = {
+            click: null,
+            success: null,
+            unlock: null,
+            fail: null
+        };
+
+        // 预加载极短音效
+        function initSounds() {
+            sounds.click = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3');  // 极短点击 (~80ms)
+            sounds.success = new Audio('https://assets.mixkit.co/active_storage/sfx/2570/2570-preview.mp3');  // 极短成功 (~100ms)
+            sounds.unlock = new Audio('https://assets.mixkit.co/active_storage/sfx/2569/2569-preview.mp3');  // 极短解锁 (~100ms)
+            sounds.fail = new Audio('https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3');  // 极短失败 (~100ms)
+
+            // 降低音量
+            Object.values(sounds).forEach(s => {
+                if (s) s.volume = 0.2;
+            });
+        }
+
+        // 播放音效（修复：每次播放创建新实例，避免一直响
+        function playSound(name) {
+            try {
+                if (!sounds[name]) return;
+                // 克隆音频节点，每次播放新的，避免叠放
+                const audio = new Audio(sounds[name].src);
+                audio.volume = sounds[name].volume;
+                audio.play().catch(() => {
+                    // 忽略任何错误
+                });
+            } catch(e) {
+                // 完全忽略任何错误，不影响游戏
+            }
+        }
+
+        // 音效初始化，用户交互后再加载
+        function tryLoadSounds() {
+            // 用户第一次点击后预加载
+            if (!sounds.click) {
+                setTimeout(() => {
+                    initSounds();
+                }, 100);
+            }
+        }
+
+        // 显示薪资变化浮动动画
+        function showSalaryChangeToast(change, currentSalary) {
+            const currentSalaryK = Math.round(currentSalary / 1000);
+            const toast = document.createElement('div');
+            const arrow = change > 0 ? '↗' : '↘';
+            const text = change > 0
+                ? `${arrow} +${change} 薪资 → ${currentSalaryK}k`
+                : `${arrow} ${change} 薪资 → ${currentSalaryK}k`;
+            toast.className = `salary-change-toast ${change > 0 ? 'up' : 'down'}`;
+            toast.textContent = text;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                if (toast.parentNode) toast.parentNode.removeChild(toast);
+            }, 1500);
+            playSound(change > 0 ? 'success' : 'fail');
+        }
+
+        // 显示成就解锁动画
+        function showAchievementUnlock(name) {
+            const toast = document.createElement('div');
+            toast.className = 'achievement-unlock';
+            toast.innerHTML = `🏆 成就解锁: ${name}`;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                if (toast.parentNode) toast.parentNode.removeChild(toast);
+            }, 2000);
+            playSound('unlock');
+        }
+
+        // 解锁彩蛋成就（更新版本，显示解锁动画）
+        function unlockEasterAchievement() {
+            const ach = achievementList.find(a => a.id === 'ach-easter');
+            if (ach && !ach.unlocked) {
+                ach.unlocked = true;
+                updateAchievements();
+                showAchievementUnlock('找到彩蛋');
+            }
+        }
+
+        // 检查并显示新解锁成就
+        function checkAndShowNewAchievements() {
+            achievementList.forEach(ach => {
+                if (ach.special) return;
+                if (!ach.unlocked && typeof ach.condition === 'function' && ach.condition()) {
+                    const wasUnlocked = ach.unlocked;
+                    ach.unlocked = true;
+                    if (!wasUnlocked) {
+                        showAchievementUnlock(ach.label.replace(/^[🏆🤖💯📅🚀⭐️🥚💼]\s+/, ''));
+                        updateAchievements();
+                    }
+                }
+            });
+        }
+
+        // 更新UI
+        function updateUI() {
+            document.getElementById('rank').textContent = gameState.rank;
+            document.getElementById('salary').textContent = `${Math.round(gameState.salary / 1000)}k`;
+            document.getElementById('tech').textContent = gameState.techSkill;
+            document.getElementById('social').textContent = gameState.socialSkill;
+            document.getElementById('innovation').textContent = gameState.innovationSkill;
+            // 更新主界面的天数和季度
+            document.getElementById('days-main').textContent = gameState.days;
+            document.getElementById('quarterYear-main').textContent = `Q${gameState.quarter} Y${gameState.year}`;
+            // 更新隐藏分
+            document.getElementById('techMatch').textContent = gameState.hiddenScores.techMatch;
+            document.getElementById('teamContribution').textContent = gameState.hiddenScores.teamContribution;
+            document.getElementById('aiAdaptability').textContent = gameState.hiddenScores.aiAdaptability;
+            document.getElementById('marketValue').textContent = gameState.hiddenScores.marketValue;
+            document.getElementById('warnings').textContent = gameState.warnings;
+            // 更新成就
+            updateAchievements();
+        }
+
+        // 事件数据库
+        function getEvents() {
+            return [
+                {
+                    id: 1,
+                    title: '🤖 AI代码生成工具引入',
+                    description: '公司引入了新的AI代码生成工具，能大幅提升开发效率。团队要求所有人都要学习使用。',
+                    options: [
+                        {
+                            text: '积极学习使用，成为工具专家',
+                            effects: { tech: +5, social: +2, innovation: +3, aiAdaptability: +8, techMatch: +5 }
+                        },
+                        {
+                            text: '表面学习，私下保留自己的核心技能',
+                            effects: { tech: +1, social: -1, innovation: 0, aiAdaptability: +2, techMatch: -3 }
+                        },
+                        {
+                            text: '担心被替代，抵制使用',
+                            effects: { tech: -2, social: -5, innovation: +5, aiAdaptability: -5, techMatch: -8 }
+                        },
+                        {
+                            text: '建议团队谨慎使用，强调人工判断的重要性',
+                            effects: { social: +5, innovation: +10, tech: -1, aiAdaptability: +3, teamContribution: +5 }
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    title: '👥 团队协作危机',
+                    description: '你的AI同事提出了一个创新方案，但需要你放弃自己正在进行的项目。',
+                    options: [
+                        {
+                            text: '支持AI方案，放弃自己的项目',
+                            effects: { social: +8, tech: -3, innovation: +5, teamContribution: +5, aiAdaptability: +3 }
+                        },
+                        {
+                            text: '坚持自己的项目，与AI方案竞争',
+                            effects: { tech: +5, social: -5, innovation: +3, techMatch: +5, marketValue: +3 }
+                        },
+                        {
+                            text: '寻找两者结合的可能性',
+                            effects: { tech: +3, social: +3, innovation: +8, teamContribution: +5, aiAdaptability: +5 }
+                        },
+                        {
+                            text: '向上级反映AI方案的潜在风险',
+                            effects: { social: -2, innovation: +5, tech: 0, teamContribution: -3, marketValue: +5 }
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    title: '📚 技能提升机会',
+                    description: '公司提供了一个AI技术培训课程，但需要占用你大部分业余时间。',
+                    options: [
+                        {
+                            text: '立即报名参加，全神贯注学习',
+                            effects: { tech: +10, innovation: +8, social: -5, aiAdaptability: +10, techMatch: +8 }
+                        },
+                        {
+                            text: '报名参加，但只在空闲时间学习',
+                            effects: { tech: +5, innovation: +3, social: 0, aiAdaptability: +5, techMatch: +3 }
+                        },
+                        {
+                            text: '先观望，等别人学习后再决定',
+                            effects: { tech: +1, social: +2, innovation: -1, aiAdaptability: +2, marketValue: +2 }
+                        },
+                        {
+                            text: '拒绝参加，专注于当前工作',
+                            effects: { tech: +3, social: +5, innovation: -3, techMatch: -5, marketValue: +5 }
+                        }
+                    ]
+                },
+                {
+                    id: 4,
+                    title: '📈 晋升机会',
+                    description: '你有两个晋升选择：管理岗需要放弃技术深度，技术岗晋升速度慢。',
+                    options: [
+                        {
+                            text: '选择管理岗，带领团队',
+                            effects: { social: +15, tech: -5, salary: +10000, rank: 'P6', teamContribution: +10, marketValue: +5 }
+                        },
+                        {
+                            text: '选择技术岗，深入研究AI技术',
+                            effects: { tech: +15, innovation: +10, salary: +5000, rank: 'P6', techMatch: +10, aiAdaptability: +8 }
+                        },
+                        {
+                            text: '申请调岗到产品部门',
+                            effects: { social: +10, innovation: +10, salary: +7000, rank: 'P6', teamContribution: +5, marketValue: +8 }
+                        },
+                        {
+                            text: '先不晋升，继续积累经验',
+                            effects: { tech: +5, social: +5, innovation: +5, salary: +3000, marketValue: +3, techMatch: +3 }
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    title: '📊 季度绩效评估',
+                    description: '季度结束，公司进行绩效评估，根据你的表现决定是否加薪、晋升或发出警告。',
+                    options: [
+                        {
+                            text: '展示AI相关技能和贡献',
+                            effects: { social: +5, aiAdaptability: +5, salary: +2000, warnings: 0 }
+                        },
+                        {
+                            text: '强调传统技能和经验',
+                            effects: { tech: +5, marketValue: +5, salary: +1000, warnings: 0 }
+                        },
+                        {
+                            text: '抱怨AI带来的压力',
+                            effects: { social: -5, teamContribution: -5, warnings: +1 }
+                        },
+                        {
+                            text: '提出创新建议',
+                            effects: { innovation: +10, teamContribution: +5, salary: +3000, warnings: 0 }
+                        }
+                    ]
+                },
+                {
+                    id: 6,
+                    title: '🏆 年度绩效评估',
+                    description: '年度结束，公司进行全面绩效评估，这将决定你的职业发展方向。',
+                    options: function() {
+                        return [
+                            {
+                                text: '展示全年AI相关成果',
+                                effects: { social: +10, aiAdaptability: +10, salary: +5000, rank: gameState.rank === 'P5' ? 'P6' : gameState.rank, warnings: 0 }
+                            },
+                            {
+                                text: '强调全年技术贡献',
+                                effects: { tech: +10, marketValue: +10, salary: +3000, warnings: 0 }
+                            },
+                            {
+                                text: '申请调岗到AI部门',
+                                effects: { aiAdaptability: +15, tech: +5, salary: +4000, warnings: 0 }
+                            },
+                            {
+                                text: '要求晋升管理岗位',
+                                effects: { social: +15, teamContribution: +10, salary: +6000, rank: gameState.rank === 'P5' ? 'P6' : gameState.rank, warnings: gameState.rank === 'P5' ? 0 : +1 }
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 7,
+                    title: '🤖 AI团队成员加入',
+                    description: '公司新招聘了一位AI专家加入你们团队，这可能会影响你的工作地位。',
+                    options: [
+                        {
+                            text: '主动与AI专家合作，学习新知识',
+                            effects: { social: +5, tech: +5, aiAdaptability: +10, teamContribution: +5 }
+                        },
+                        {
+                            text: '保持距离，专注于自己的工作',
+                            effects: { tech: +3, social: -2, marketValue: +3, aiAdaptability: -2 }
+                        },
+                        {
+                            text: '向上级表达担忧，要求明确分工',
+                            effects: { social: +2, teamContribution: +3, aiAdaptability: +2, warnings: 0 }
+                        },
+                        {
+                            text: '开始寻找新的工作机会',
+                            effects: { marketValue: +8, social: -3, tech: +2, aiAdaptability: -5 }
+                        }
+                    ]
+                },
+                {
+                    id: 8,
+                    title: '📉 公司裁员传闻',
+                    description: '公司内部流传着裁员的消息，AI相关岗位可能更安全。',
+                    options: [
+                        {
+                            text: '加倍努力工作，证明自己的价值',
+                            effects: { tech: +5, social: +3, teamContribution: +5, warnings: 0 }
+                        },
+                        {
+                            text: '开始学习AI相关技能，提升竞争力',
+                            effects: { tech: +3, aiAdaptability: +8, innovation: +5, social: -2 }
+                        },
+                        {
+                            text: '与同事联合起来，向管理层表达担忧',
+                            effects: { social: +8, teamContribution: +5, marketValue: -3, warnings: +1 }
+                        },
+                        {
+                            text: '无所谓，相信自己不会被裁',
+                            effects: { tech: +1, social: -5, teamContribution: -3, warnings: +2 }
+                        }
+                    ]
+                },
+                {
+                    id: 9,
+                    title: '💻 远程工作政策',
+                    description: '公司推出新的远程工作政策，你可以选择完全远程、混合模式或继续办公室工作。',
+                    options: [
+                        {
+                            text: '选择完全远程工作',
+                            effects: { social: -5, tech: +3, innovation: +5, marketValue: +3 }
+                        },
+                        {
+                            text: '选择混合模式（3天远程，2天办公室）',
+                            effects: { social: +2, tech: +2, aiAdaptability: +3, teamContribution: +2 }
+                        },
+                        {
+                            text: '继续完全在办公室工作',
+                            effects: { social: +5, teamContribution: +5, tech: -2, marketValue: -3 }
+                        },
+                        {
+                            text: '要求灵活安排，根据项目需要调整',
+                            effects: { social: +3, innovation: +3, teamContribution: +3, aiAdaptability: +3 }
+                        }
+                    ]
+                },
+                {
+                    id: 10,
+                    title: '📚 外部培训机会',
+                    description: '你获得了一个参加外部AI技术 conference的机会，但需要自费并占用周末时间。',
+                    options: [
+                        {
+                            text: '积极参加，自费学习',
+                            effects: { tech: +8, innovation: +10, aiAdaptability: +10, salary: -1000 }
+                        },
+                        {
+                            text: '申请公司报销部分费用',
+                            effects: { tech: +5, social: +3, aiAdaptability: +5, salary: -500, warnings: 0 }
+                        },
+                        {
+                            text: '只参加免费部分，放弃付费内容',
+                            effects: { tech: +3, innovation: +3, aiAdaptability: +3, salary: 0 }
+                        },
+                        {
+                            text: '放弃参加，专注于当前工作',
+                            effects: { tech: +2, social: +2, teamContribution: +2, aiAdaptability: -3 }
+                        }
+                    ]
+                },
+                {
+                    id: 11,
+                    title: '🍵 下午茶头脑风暴',
+                    description: '团队下午茶时间，大家在讨论AI对行业的影响，产品经理邀请你分享观点。',
+                    options: [
+                        {
+                            text: '积极分享AI协作经验，获得大家认可',
+                            effects: { social: +8, aiAdaptability: +5, teamContribution: +5 }
+                        },
+                        {
+                            text: '默默听别人说，不发表意见',
+                            effects: { social: +2, teamContribution: +1 }
+                        },
+                        {
+                            text: '唱反调，说AI全是炒作',
+                            effects: { social: -5, innovation: +3, aiAdaptability: -8 }
+                        },
+                        {
+                            text: '提前离开，回去写代码',
+                            effects: { tech: +3, social: -2, teamContribution: +2 }
+                        }
+                    ]
+                },
+                {
+                    id: 12,
+                    title: '🐛 线上紧急bug',
+                    description: '周末你正在休息，线上出现严重bug，需要人立即处理。',
+                    options: [
+                        {
+                            text: '立刻回公司处理，展现责任心',
+                            effects: { teamContribution: +10, social: +5, tech: +2, salary: +1000, warnings: 0 }
+                        },
+                        {
+                            text: '远程指挥新人处理，自己在家指导',
+                            effects: { teamContribution: +5, social: +3, innovation: +2 }
+                        },
+                        {
+                            text: '说在外面不方便，周一再说',
+                            effects: { teamContribution: -8, social: -3, warnings: +1 }
+                        },
+                        {
+                            text: '推荐AI辅助定位排查',
+                            effects: { aiAdaptability: +8, teamContribution: +3, tech: +2 }
+                        }
+                    ]
+                },
+                {
+                    id: 13,
+                    title: '💡 创新项目提案',
+                    description: '你想到了一个利用AI优化现有工作流的创新方案，可以大幅提升团队效率，要不要提案？',
+                    options: [
+                        {
+                            text: '写详细提案，主动推动项目',
+                            effects: { innovation: +12, teamContribution: +8, aiAdaptability: +10, techMatch: +8 }
+                        },
+                        {
+                            text: '跟主管说说，让他决定要不要推进',
+                            effects: { innovation: +5, teamContribution: +3, social: +2 }
+                        },
+                        {
+                            text: '自己默默用就行，不告诉别人',
+                            effects: { tech: +5, aiAdaptability: +5, teamContribution: -2 }
+                        },
+                        {
+                            text: '算了，多一事不如少一事',
+                            effects: { innovation: -5, aiAdaptability: -3 }
+                        }
+                    ]
+                },
+                {
+                    id: 14,
+                    title: '👔 行业招聘会',
+                    description: '竞争对手公司挖你，给了你一个面试机会，薪资可能上涨。去不去？',
+                    options: [
+                        {
+                            text: '偷偷去面试，争取更好offer',
+                            effects: { marketValue: +10, salary: +3000, warnings: 0 }
+                        },
+                        {
+                            text: '拒绝，对现在公司忠诚',
+                            effects: { teamContribution: +8, social: +5, marketValue: -2 }
+                        },
+                        {
+                            text: '拿了offer跟现在老板谈加薪',
+                            effects: { salary: +5000, marketValue: +8, warnings: +1 }
+                        },
+                        {
+                            text: '推荐朋友去',
+                            effects: { social: +10, marketValue: +3 }
+                        }
+                    ]
+                },
+                {
+                    id: 15,
+                    title: '🏠 996还是Work Life Balance？',
+                    description: '项目赶进度，leader要求大家加班996，你怎么看？',
+                    options: [
+                        {
+                            text: '带头加班，第一个到最后一个走',
+                            effects: { teamContribution: +8, social: +3, innovation: -5, salary: +2000 }
+                        },
+                        {
+                            text: '按时完成自己活就走，拒绝无效加班',
+                            effects: { innovation: +5, teamContribution: -3, marketValue: +5 }
+                        },
+                        {
+                            text: '建议拆分任务，分批上线',
+                            effects: { teamContribution: +5, innovation: +8, social: +3 }
+                        },
+                        {
+                            text: '说身体吃不消，申请少安排点活',
+                            effects: { teamContribution: -5, warnings: +1 }
+                        }
+                    ]
+                },
+                {
+                    id: 16,
+                    title: '🎓 硕士在职文凭',
+                    description: '公司和大学合作推出在职硕士项目，读完涨薪定级，但需要2年周末上课，学费自付。',
+                    options: [
+                        {
+                            text: '报名就读，投资自己未来',
+                            effects: { marketValue: +12, salary: +2000, innovation: +5, salary: -8000 }
+                        },
+                        {
+                            text: '不读，现在能力已经足够',
+                            effects: { tech: +5, innovation: +5 }
+                        },
+                        {
+                            text: '申请公司赞助学费',
+                            effects: { marketValue: +5, salary: -2000, warnings: 0 }
+                        },
+                        {
+                            text: '先看看别人读了怎么样',
+                            effects: { marketValue: +2 }
+                        }
+                    ]
+                },
+                {
+                    id: 17,
+                    title: '🗣️ 跨部门甩锅大会',
+                    description: '项目出问题了，其他部门说是你们的责任，需要有人去开会澄清。',
+                    options: [
+                        {
+                            text: '主动承担责任，一起解决问题',
+                            effects: { teamContribution: +10, social: +8, warnings: 0 }
+                        },
+                        {
+                            text: '据理力争，明确划清界限',
+                            effects: { teamContribution: -5, social: -5, warnings: 0 }
+                        },
+                        {
+                            text: '让leader去背锅，自己躲后面',
+                            effects: { social: -8, teamContribution: -3, warnings: +1 }
+                        },
+                        {
+                            text: '拿出数据和文档客观说明',
+                            effects: { social: +5, teamContribution: +5, innovation: +3 }
+                        }
+                    ]
+                },
+                {
+                    id: 18,
+                    title: '🔄 技术重构还是业务需求',
+                    description: '老板说既要重构老代码又要上新业务需求，时间不够只能选一个，你选？',
+                    options: [
+                        {
+                            text: '优先重构，技术债务早晚要还',
+                            effects: { tech: +10, techMatch: +5, teamContribution: -3 }
+                        },
+                        {
+                            text: '优先业务，满足需求最重要',
+                            effects: { teamContribution: +8, techMatch: +3, tech: -2 }
+                        },
+                        {
+                            text: '建议砍需求，先做一部分',
+                            effects: { innovation: +8, teamContribution: +3, social: -2 }
+                        },
+                        {
+                            text: '用AI生成代码同时做两个',
+                            effects: { aiAdaptability: +10, tech: +5, innovation: +5, warnings: +1 }
+                        }
+                    ]
+                },
+                {
+                    id: 19,
+                    title: '🌟 开源项目贡献',
+                    description: '你发现了一个知名开源项目的bug，要不要花时间修了提PR？',
+                    options: [
+                        {
+                            text: '花周末时间修好提交PR',
+                            effects: { tech: +8, innovation: +8, marketValue: +10, aiAdaptability: +3 }
+                        },
+                        {
+                            text: '提issue让作者自己修',
+                            effects: { tech: +2 }
+                        },
+                        {
+                            text: '在项目群里问有没有人修',
+                            effects: { social: +3 }
+                        },
+                        {
+                            text: '自己fork改了用，不提交',
+                            effects: { tech: +5, marketValue: -2 }
+                        }
+                    ]
+                },
+                {
+                    id: 20,
+                    title: '💬 技术分享会',
+                    description: '团队要求每个人做技术分享，主题你选。',
+                    options: [
+                        {
+                            text: '分享AI工具在工作中的应用',
+                            effects: { aiAdaptability: +10, social: +5, teamContribution: +5 }
+                        },
+                        {
+                            text: '分享自己的业务领域经验',
+                            effects: { techMatch: +8, teamContribution: +3 }
+                        },
+                        {
+                            text: '分享最新前沿技术趋势',
+                            effects: { innovation: +10, marketValue: +5, social: +3 }
+                        },
+                        {
+                            text: '说自己没时间，让别人先讲',
+                            effects: { social: -5, teamContribution: -2, warnings: +1 }
+                        }
+                    ]
+                },
+                {
+                    id: 21,
+                    title: '🧪 新产品A/B测试',
+                    description: '新版本要A/B测试，需要用户反馈数据来决定最终方案。你负责收集分析。',
+                    options: [
+                        {
+                            text: '设计科学实验，认真分析数据',
+                            effects: { innovation: +8, teamContribution: +8, techMatch: +5 }
+                        },
+                        {
+                            text: '用AI分析数据，快速出报告',
+                            effects: { aiAdaptability: +10, innovation: +5, teamContribution: +3 }
+                        },
+                        {
+                            text: '跟着感觉走，选自己喜欢的版本',
+                            effects: { innovation: +5, teamContribution: -5 }
+                        },
+                        {
+                            text: '让老板拍板决定',
+                            effects: { social: +3, teamContribution: -2 }
+                        }
+                    ]
+                },
+                {
+                    id: 22,
+                    title: '👶 带新人',
+                    description: '部门来了个新毕业生，分配给你带。你打算怎么带？',
+                    options: [
+                        {
+                            text: '认真教，从环境搭建到编码规范一步步来',
+                            effects: { teamContribution: +10, social: +8, warnings: 0 }
+                        },
+                        {
+                            text: '让他跟着AI学，你只答疑',
+                            effects: { aiAdaptability: +8, teamContribution: +5, innovation: +3 }
+                        },
+                        {
+                            text: '太忙了，让他自己看文档摸索',
+                            effects: { teamContribution: -5, social: -3, warnings: +1 }
+                        },
+                        {
+                            text: '带他一起做项目，在实践中成长',
+                            effects: { social: +10, teamContribution: +8, innovation: +2 }
+                        }
+                    ]
+                },
+                {
+                    id: 23,
+                    title: '💰 副业机会',
+                    description: '朋友找你一起做副业，周末接私活，收入不错但会消耗精力。',
+                    options: [
+                        {
+                            text: '接！利用业余时间多赚钱',
+                            effects: { salary: +3000, innovation: +5, tech: -3 }
+                        },
+                        {
+                            text: '只接和AI相关的，顺便提升能力',
+                            effects: { aiAdaptability: +8, salary: +2000, innovation: +5 }
+                        },
+                        {
+                            text: '拒绝，专注主业更重要',
+                            effects: { teamContribution: +5, tech: +5 }
+                        },
+                        {
+                            text: '介绍给同事做，自己赚点中介费',
+                            effects: { social: +5, salary: +500 }
+                        }
+                    ]
+                },
+                {
+                    id: 24,
+                    title: '🎯 OKR制定',
+                    description: '这个季度OKR制定，你打算给自己设什么样的目标？',
+                    options: [
+                        {
+                            text: '挑战性目标，全面拥抱AI',
+                            effects: { aiAdaptability: +10, innovation: +10, teamContribution: +5, warnings: 0 }
+                        },
+                        {
+                            text: '保守目标，保证完成现有业务',
+                            effects: { teamContribution: +5, techMatch: +5, innovation: -2 }
+                        },
+                        {
+                            text: '一半业务一半AI学习',
+                            effects: { aiAdaptability: +5, teamContribution: +5, techMatch: +5 }
+                        },
+                        {
+                            text: '复制上个季度目标',
+                            effects: { innovation: -5, techMatch: -2 }
+                        }
+                    ]
+                },
+                {
+                    id: 25,
+                    title: '🐦 彩蛋：老板找你谈话',
+                    description: '老板突然单独找你，说Claude写的代码比你好，还不要工资，你怎么回应？',
+                    options: [
+                        {
+                            text: 'Claude写代码我审核，效率提升一倍，我们一起做得更快',
+                            effects: { aiAdaptability: +15, teamContribution: +10, salary: +3000 }
+                        },
+                        {
+                            text: '那你让Claude来做这个项目啊',
+                            effects: { warnings: +2, social: -10 }
+                        },
+                        {
+                            text: '我用Claude提高产出，现在能做更多事情了',
+                            effects: { aiAdaptability: +10, teamContribution: +5, innovation: +8 }
+                        },
+                        {
+                            text: '我说我也在用Claude，它是我的助手',
+                            effects: { aiAdaptability: +8, social: +5, innovation: +5 }
+                        }
+                    ]
+                },
+                {
+                    id: 26,
+                    title: '🎮 彩蛋：摸鱼时刻',
+                    description: '改bug改了一下午没搞定，有点累了，要不要休息十分钟摸个鱼？',
+                    options: [
+                        {
+                            text: '刷会儿知乎，看看AI新进展',
+                            effects: { aiAdaptability: +3, innovation: +2, social: 0 }
+                        },
+                        {
+                            text: '下楼买杯咖啡，散步五分钟',
+                            effects: { innovation: +5, teamContribution: 0 }
+                        },
+                        {
+                            text: '继续硬刚，不搞定不吃饭',
+                            effects: { tech: +5, innovation: -2 }
+                        },
+                        {
+                            text: '玩两把小游戏放松',
+                            effects: { innovation: +3, tech: -1 }
+                        }
+                    ]
+                },
+                {
+                    id: 27,
+                    title: '🚀 新技术栈引入',
+                    description: '团队讨论要不要引入热门新框架/技术栈，你是什么态度？',
+                    options: [
+                        {
+                            text: '积极拥抱，主动学习承担迁移工作',
+                            effects: { tech: +8, innovation: +10, aiAdaptability: +5, techMatch: +8 }
+                        },
+                        {
+                            text: '保持观望，先让别人踩坑再说',
+                            effects: { tech: +2, innovation: -2 }
+                        },
+                        {
+                            text: '反对，现在技术栈够用了稳定最重要',
+                            effects: { techMatch: +5, innovation: -5, aiAdaptability: -3 }
+                        },
+                        {
+                            text: '渐进式引入，逐步替换',
+                            effects: { innovation: +8, teamContribution: +5, techMatch: +3 }
+                        }
+                    ]
+                },
+                {
+                    id: 28,
+                    title: '📝 写技术文档',
+                    description: '项目上线了，还缺一份完整的技术文档，你写不写？',
+                    options: [
+                        {
+                            text: '认真写完整，方便后续维护',
+                            effects: { teamContribution: +8, techMatch: +5, social: +3 }
+                        },
+                        {
+                            text: '让AI帮我写，我改改就行',
+                            effects: { aiAdaptability: +8, teamContribution: +3 }
+                        },
+                        {
+                            text: '写个大概就行，能用就行',
+                            effects: { teamContribution: -3, warnings: 0 }
+                        },
+                        {
+                            text: '让新人去写，我来review',
+                            effects: { teamContribution: +3, social: +2 }
+                        }
+                    ]
+                },
+                {
+                    id: 29,
+                    title: '💼 跳槽去AI创业公司',
+                    description: 'AI创业公司挖你，给股票期权，薪资涨50%，但是996，去不去？',
+                    options: [
+                        {
+                            text: '果断去，all in AI浪潮',
+                            effects: { aiAdaptability: +15, innovation: +10, salary: +12000, warnings: 0 }
+                        },
+                        {
+                            text: '不去，大公司稳定最重要',
+                            effects: { teamContribution: +5, techMatch: +5, salary: +2000 }
+                        },
+                        {
+                            text: '要求现在公司涨薪，不涨就走',
+                            effects: { salary: +8000, marketValue: +10, warnings: +1 }
+                        },
+                        {
+                            text: '去做技术顾问，兼职不离职',
+                            effects: { salary: +4000, marketValue: +8, aiAdaptability: +5 }
+                        }
+                    ]
+                },
+                {
+                    id: 30,
+                    title: '🧘 职场中年危机',
+                    description: '你发现身边越来越多年轻人比你拼，学习速度比你快，你怎么办？',
+                    options: [
+                        {
+                            text: '比年轻人更努力，每天加班学习新技术',
+                            effects: { tech: +10, aiAdaptability: +10, innovation: +8, social: -5 }
+                        },
+                        {
+                            text: '转管理方向，靠经验和人脉吃饭',
+                            effects: { social: +12, teamContribution: +10, tech: -3, marketValue: +5 }
+                        },
+                        {
+                            text: '深耕业务领域，成为业务专家',
+                            effects: { techMatch: +12, teamContribution: +8, marketValue: +8 }
+                        },
+                        {
+                            text: '接受现状，摸鱼等退休',
+                            effects: { innovation: -10, aiAdaptability: -8, warnings: +2 }
+                        }
+                    ]
+                },
+                // === 高级事件（P6+ 专属）
+                {
+                    id: 31,
+                    title: '🏢 总监位置空出来了',
+                    description: '总监升职了，总监位置空出来，领导在考虑人选，你符合条件，要不要争取？',
+                    minRank: 'P6',
+                    options: [
+                        {
+                            text: '积极争取，展示过往贡献',
+                            effects: { social: +10, teamContribution: +15, rank: 'M1', salary: +15000, warnings: 0 }
+                        },
+                        {
+                            text: '推荐更资深同事，自己升高级工程师',
+                            effects: { social: +8, teamContribution: +8, rank: 'P7', salary: +10000 }
+                        },
+                        {
+                            text: '算了，管理太累，保持现状',
+                            effects: { teamContribution: +5, salary: +3000 }
+                        },
+                        {
+                            text: '让领导给更多资源再考虑',
+                            effects: { salary: +8000, social: +5, teamContribution: +5 }
+                        }
+                    ]
+                },
+                {
+                    id: 32,
+                    title: '🎖️ 晋升答辩',
+                    description: '你到P7评审会，需要做晋升答辩，评委们都是大佬，你准备怎么准备？',
+                    minRank: 'P6',
+                    options: [
+                        {
+                            text: '重点讲AI赋能业务成果',
+                            effects: { aiAdaptability: +15, techMatch: +10, salary: +5, rank: 'P7', salary: +12000 }
+                        },
+                        {
+                            text: '重点讲业务深度和贡献',
+                            effects: { techMatch: +15, teamContribution: +10, salary: +10000, rank: 'P7' }
+                        },
+                        {
+                            text: '拉上团队一起展示',
+                            effects: { teamContribution: +12, social: +10, salary: +8000 }
+                        },
+                        {
+                            text: '明年再来，今年先积累',
+                            effects: { techMatch: +5, teamContribution: +5 }
+                        }
+                    ]
+                },
+                {
+                    id: 33,
+                    title: '🤝 跨部门合作项目',
+                    description: 'CEO发起一个跨部门AI项目，让你来当项目负责人，接受吗？',
+                    minRank: 'P6',
+                    options: [
+                        {
+                            text: '接受挑战，担任负责人',
+                            effects: { teamContribution: +15, social: +10, innovation: +8, salary: +5000 }
+                        },
+                        {
+                            text: '推荐别人当负责人，自己当技术负责人',
+                            effects: { techMatch: +10, teamContribution: +5, social: +8 }
+                        },
+                        {
+                            text: '说自己太忙，推掉',
+                            effects: { teamContribution: -5, warnings: +1 }
+                        },
+                        {
+                            text: '接受但要求更多资源和明确分工',
+                            effects: { teamContribution: +10, social: +5, innovation: +8 }
+                        }
+                    ]
+                },
+                {
+                    id: 34,
+                    title: '💡 技术选型争论',
+                    description: '关于新技术选型，你作为资深专家，团队有两种声音，你支持哪个方向？',
+                    minRank: 'P6',
+                    options: [
+                        {
+                            text: '拥抱AI原生方案，全面使用AI辅助开发',
+                            effects: { aiAdaptability: +12, innovation: +10, techMatch: +8 }
+                        },
+                        {
+                            text: '坚持成熟稳定方案，不追新',
+                            effects: { techMatch: +10, teamContribution: +5, innovation: -3 }
+                        },
+                        {
+                            text: '折中方案，分阶段引入',
+                            effects: { innovation: +8, teamContribution: +8, social: +5 }
+                        },
+                        {
+                            text: '投票让团队决定，我尊重大家选择',
+                            effects: { social: +10, teamContribution: +5 }
+                        }
+                    ]
+                },
+                {
+                    id: 35,
+                    title: '💰 股票期权行权',
+                    description: '公司给的期权到期了，可以行权一部分，现在股价不错，卖不卖？',
+                    minRank: 'P6',
+                    options: [
+                        {
+                            text: '全部卖掉落袋为安',
+                            effects: { salary: +20000, marketValue: +5 }
+                        },
+                        {
+                            text: '卖一部分，留一部分继续涨',
+                            effects: { salary: +10000, marketValue: +8 }
+                        },
+                        {
+                            text: '相信公司，继续持有',
+                            effects: { marketValue: +10, salary: 0 }
+                        },
+                        {
+                            text: '减持一部分改善生活',
+                            effects: { salary: +5000, innovation: +5 }
+                        }
+                    ]
+                },
+                // === 更多彩蛋事件 ===
+                {
+                    id: 41,
+                    title: '🥚 彩蛋：产品经理让你改需求',
+                    description: '距离上线还有一天，产品经理说"这个需求很简单，很快就能改好"，你怎么办？',
+                    isEgg: true,
+                    options: [
+                        {
+                            text: '默默改，反正AI生成一下就出来了',
+                            effects: { aiAdaptability: +5, tech: +2, social: -2 }
+                        },
+                        {
+                            text: '说排期满了，放到下个版本',
+                            effects: { social: -5, teamContribution: +2, warnings: +1 }
+                        },
+                        {
+                            text: '说改可以，先评估工作量要加钱',
+                            effects: { salary: +2000, social: -3 }
+                        },
+                        {
+                            text: '和产品一起加班改完，顺便泡杯茶等上线',
+                            effects: { social: +8, teamContribution: +5, aiAdaptability: +3 }
+                        }
+                    ]
+                },
+                {
+                    id: 42,
+                    title: '🎪 彩蛋：程序员节礼物',
+                    description: '今天是1024程序员节，公司发节日礼物，你选哪个？',
+                    isEgg: true,
+                    options: [
+                        {
+                            text: '选机械键盘',
+                            effects: { tech: +5, innovation: +3 }
+                        },
+                        {
+                            text: '选拉杆行李箱',
+                            effects: { marketValue: +5 }
+                        },
+                        {
+                            text: '选购物卡最实在',
+                            effects: { salary: +1000 }
+                        },
+                        {
+                            text: '选年假一天',
+                            effects: { innovation: +5, teamContribution: +2 }
+                        }
+                    ]
+                },
+                {
+                    id: 43,
+                    title: '🔍 彩蛋：code review 冲突',
+                    description: '你code review发现新人写的代码质量很差，全部都是AI生成的，你怎么处理？',
+                    isEgg: true,
+                    options: [
+                        {
+                            text: '打回去全部重写，要求每一行都要看懂',
+                            effects: { techMatch: +8, social: -3, warnings: 0 }
+                        },
+                        {
+                            text: '让他自己看懂，教他怎么改，一步步优化',
+                            effects: { teamContribution: +8, social: +5, aiAdaptability: +3 }
+                        },
+                        {
+                            text: '算了合并，出问题他自己背',
+                            effects: { teamContribution: -5, warnings: +1 }
+                        },
+                        {
+                            text: '帮他优化，讲解AI代码坑在哪里',
+                            effects: { aiAdaptability: +8, teamContribution: +5, social: +5 }
+                        }
+                    ]
+                },
+                {
+                    id: 44,
+                    title: '☕ 彩蛋：早会迟到',
+                    description: '早上地铁晚点，你要迟到了，早会要站着汇报进度，怎么办？',
+                    isEgg: true,
+                    options: [
+                        {
+                            text: '提前群里说一声，慢慢过来',
+                            effects: { social: +3 }
+                        },
+                        {
+                            text: '直接打车狂飙到公司',
+                            effects: { salary: -50, social: +2 }
+                        },
+                        {
+                            text: '假装不知道，睡过头了，不说话',
+                            effects: { social: -5, warnings: +1 }
+                        },
+                        {
+                            text: '提前准备好录好语音汇报',
+                            effects: { innovation: +5, social: +3 }
+                        }
+                    ]
+                },
+                {
+                    id: 45,
+                    title: '🧠 彩蛋：ChatGPT帮你写周报',
+                    description: '周末要写周报了，你最近没干什么活，让ChatGPT帮你写一份漂亮周报，你会？',
+                    isEgg: true,
+                    options: [
+                        {
+                            text: '直接用AI写好交上去',
+                            effects: { aiAdaptability: +10, innovation: +2, teamContribution: -2 }
+                        },
+                        {
+                            text: 'AI写框架，自己填内容改一改',
+                            effects: { aiAdaptability: +5, teamContribution: +3 }
+                        },
+                        {
+                            text: '自己老老实实写',
+                            effects: { teamContribution: +5, aiAdaptability: -1 }
+                        },
+                        {
+                            text: '让实习生写，说自己要复盘总结',
+                            effects: { social: +2, teamContribution: +2 }
+                        }
+                    ]
+                }
+            ];
+        }
+
+        // 生成事件
+        function generateEvent() {
+            if (gameState.isGameOver) return;
+            console.log('generateEvent called');
+
+            // 确保基本DOM结构存在（重新开始后需要重建）
+            let gameContainer = document.getElementById('game-container');
+            let eventSection = document.getElementById('event-section');
+            let resultSection = document.getElementById('result-section');
+
+            if (!eventSection || !resultSection) {
+                // 重建DOM结构
+                gameContainer.innerHTML = `
+                    <div id="event-section"></div>
+                    <div id="result-section" style="display: none;"></div>
+                `;
+                eventSection = document.getElementById('event-section');
+                resultSection = document.getElementById('result-section');
+            }
+
+            // 获取事件列表
+            const events = getEvents();
+            console.log('events:', events);
+
+            // 保存之前的季度，用于判断是否是新季度
+            const prevQuarter = gameState.quarter;
+            const prevYear = gameState.year;
+
+            // 检查是否需要绩效评估（只有 180天半年 和 365天年度 需要评估）
+            const needsPerformanceReview = checkQuarterYear();
+            let event;
+
+            if (needsPerformanceReview) {
+                // 180天或365天，触发绩效评估
+                if (gameState.days >= 365) {
+                    // 年度评估
+                    event = events.find(e => e.id === 6);
+                    console.log('年度评估事件:', event);
+                } else {
+                    // 半年评估
+                    event = events.find(e => e.id === 5);
+                    console.log('半年绩效评估事件:', event);
+                }
+            } else if (prevQuarter !== gameState.quarter && gameState.days > 1) {
+                // 新季度开始（且不是游戏刚开始）：AI技术进步，不进则退！所有属性自动小幅下降
+                const DECAY = 2; // 每个季度衰减2点
+                gameState.techSkill = Math.max(0, gameState.techSkill - DECAY);
+                gameState.socialSkill = Math.max(0, gameState.socialSkill - DECAY);
+                gameState.innovationSkill = Math.max(0, gameState.innovationSkill - DECAY);
+                gameState.hiddenScores.techMatch = Math.max(0, gameState.hiddenScores.techMatch - DECAY);
+                gameState.hiddenScores.teamContribution = Math.max(0, gameState.hiddenScores.teamContribution - DECAY);
+                gameState.hiddenScores.aiAdaptability = Math.max(0, gameState.hiddenScores.aiAdaptability - DECAY);
+                gameState.hiddenScores.marketValue = Math.max(0, gameState.hiddenScores.marketValue - DECAY);
+
+                // 随着年份增加，衰减更快，难度提高
+                if (gameState.year > 1) {
+                    const extraDecay = gameState.year - 1;
+                    gameState.hiddenScores.aiAdaptability = Math.max(0, gameState.hiddenScores.aiAdaptability - extraDecay);
+                }
+
+                // 触发OKR制定
+                event = events.find(e => e.id === 24); // id=24就是OKR制定
+                console.log('季度OKR制定（已自动衰减属性：不进则退）:', event);
+            } else {
+                // 根据职级过滤可用事件
+                // rank等级顺序：P5 < P6 < P7 < M1
+                const rankLevel = { P5: 1, P6: 2, P7: 3, M1: 4 };
+                const currentLevel = rankLevel[gameState.rank] || 1;
+
+                // 随机选择其他事件：只包括满足minRank要求的事件
+                let candidateEvents = events.filter(e => {
+                    if (e.id === 5 || e.id === 6 || e.id === 24) return false; // 排除评估和OKR
+                    if (!e.minRank) return true; // 没有minRank限制，任何职级都可以
+                    return currentLevel >= rankLevel[e.minRank];
+                });
+
+                // 一年后：减少普通小事，增加更多重大事件/高级事件，提高难度
+                let weightedEvents = [];
+                candidateEvents.forEach(e => {
+                    if (gameState.days > 365) {
+                        // 第二年之后：高级/重要事件权重更高
+                        if (e.minRank || e.isEgg === undefined) {
+                            // 高级事件/普通事件：权重3
+                            for (let i = 0; i < 3; i++) weightedEvents.push(e);
+                        } else {
+                            // 彩蛋小事：权重1，减少出现概率
+                            weightedEvents.push(e);
+                        }
+                    } else {
+                        // 第一年：所有事件等概率
+                        weightedEvents.push(e);
+                    }
+                });
+
+                event = weightedEvents[Math.floor(Math.random() * weightedEvents.length)];
+                console.log('随机普通事件:', event);
+            }
+
+            // 处理年度事件的动态选项
+            let options = event.options;
+            if (typeof options === 'function') {
+                options = options();
+                console.log('动态选项:', options);
+            }
+
+            // 确保结果区域隐藏
+            if (resultSection) {
+                resultSection.style.display = 'none';
+                resultSection.innerHTML = '';
+            }
+
+            // 检查是否是关键时点（绩效评估、晋升等重要事件）
+            const keyMomentIds = [5, 6, 4, 31, 32, 33, 29]; // 季度评估、年度评估、晋升机会、总监位置、晋升答辩、跨部门项目、跳槽
+            const isKeyMoment = keyMomentIds.includes(event.id);
+            const cardStyle = isKeyMoment
+                ? 'background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 8px solid #f57c00;'
+                : 'background: #f8f9fa; border-left: 5px solid #667eea;';
+
+            // 添加环境提示（风险预警）
+            let envTip = '';
+            const hiddenScore = calculateHiddenScore();
+            if (hiddenScore < 30) {
+                envTip = `<div style="background: #ffebee; color: #c62828; padding: 10px; border-radius: 6px; margin-top: 10px; font-weight: bold;">⚠️ 警告：你的综合评分过低，本次评估就很危险！</div>`;
+            } else if (hiddenScore < 50) {
+                envTip = `<div style="background: #fff3e0; color: #ef6c00; padding: 10px; border-radius: 6px; margin-top: 10px; font-weight: bold;">⚠️ 提示：你的综合评分偏低，请认真对待本次评估！</div>`;
+            } else if (isKeyMoment) {
+                envTip = `<div style="background: #e8f5e9; color: #2e7d32; padding: 10px; border-radius: 6px; margin-top: 10px; font-weight: bold;">✅ 当前状态良好，祝你评估顺利！</div>`;
+            }
+
+            // 关键时点标题
+            let keyTitle = '';
+            if (isKeyMoment) {
+                if (event.id === 5 || event.id === 6) {
+                    keyTitle = '<div style="font-size: 1.5rem; text-align: center; margin-bottom: 10px; color: #f57c00; font-weight: bold;">📊 关键时点 - 绩效评估</div>';
+                } else if (event.id === 4 || event.id === 31 || event.id === 32) {
+                    keyTitle = '<div style="font-size: 1.5rem; text-align: center; margin-bottom: 10px; color: #f57c00; font-weight: bold;">⭐️ 关键机会 - 晋升机遇</div>';
+                } else {
+                    keyTitle = '<div style="font-size: 1.5rem; text-align: center; margin-bottom: 10px; color: #f57c00; font-weight: bold;">🎯 重大选择</div>';
+                }
+            }
+
+            // 直接显示新事件
+            eventSection.innerHTML = `
+                <div class="event-card" style="${cardStyle}">
+                    ${keyTitle}
+                    <div class="event-title">${event.title}</div>
+                    <div class="event-description">${event.description}</div>
+                    ${envTip}
+                    <div class="options-grid">
+                        ${options.map((option, index) => `
+                            <button class="option-button" onclick="chooseOption(${event.id}, ${index})">
+                                ${option.text}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            console.log('事件已生成');
+        }
+
+        // 防止重复点击标志
+        let isProcessingChoice = false;
+
+        // 选择选项
+        window.chooseOption = function(eventId, optionIndex) {
+            console.log('chooseOption called with eventId:', eventId, 'optionIndex:', optionIndex);
+
+            // 防止重复点击
+            if (isProcessingChoice) {
+                console.log('Choice already being processed, ignoring');
+                return;
+            }
+
+            try {
+                isProcessingChoice = true;
+
+                // 尝试加载音效（第一次点击后加载）
+                tryLoadSounds();
+
+                const events = getEvents();
+                const event = events.find(e => e.id === eventId);
+                console.log('Found event:', event);
+
+                // 处理动态选项
+                let options = event.options;
+                if (typeof options === 'function') {
+                    options = options();
+                    console.log('Dynamic options:', options);
+                }
+                const option = options[optionIndex];
+                console.log('Selected option:', option);
+
+                // 保存之前的薪资，用于对比
+                const previousSalary = gameState.salary;
+
+                // 成长衰减系数：放慢增长速度，让属性不容易满
+                // AI时代技术变化快，需要持续努力，很难一下子满值
+                const GROWTH_SCALE = 0.3;
+
+                // 应用效果
+                gameState.techSkill = Math.max(0, Math.min(100, gameState.techSkill + Math.round((option.effects.tech || 0) * GROWTH_SCALE)));
+                gameState.socialSkill = Math.max(0, Math.min(100, gameState.socialSkill + Math.round((option.effects.social || 0) * GROWTH_SCALE)));
+                gameState.innovationSkill = Math.max(0, Math.min(100, gameState.innovationSkill + Math.round((option.effects.innovation || 0) * GROWTH_SCALE)));
+                gameState.salary = Math.max(0, gameState.salary + (option.effects.salary || 0)); // 薪资不减半
+                if (option.effects.rank) gameState.rank = option.effects.rank;
+
+                // 应用隐藏分效果
+                if (option.effects.techMatch) gameState.hiddenScores.techMatch = Math.max(0, Math.min(100, gameState.hiddenScores.techMatch + Math.round((option.effects.techMatch) * GROWTH_SCALE)));
+                if (option.effects.teamContribution) gameState.hiddenScores.teamContribution = Math.max(0, Math.min(100, gameState.hiddenScores.teamContribution + Math.round((option.effects.teamContribution) * GROWTH_SCALE)));
+                if (option.effects.aiAdaptability) gameState.hiddenScores.aiAdaptability = Math.max(0, Math.min(100, gameState.hiddenScores.aiAdaptability + Math.round((option.effects.aiAdaptability) * GROWTH_SCALE)));
+                if (option.effects.marketValue) gameState.hiddenScores.marketValue = Math.max(0, Math.min(100, gameState.hiddenScores.marketValue + Math.round((option.effects.marketValue) * GROWTH_SCALE)));
+                if (option.effects.warnings) gameState.warnings = Math.max(0, gameState.warnings + option.effects.warnings);
+
+                // 增加天数
+                gameState.days += 7;
+                console.log('Days increased to:', gameState.days);
+
+                // 检查季度和年度，是否需要绩效评估
+                const isNewQuarter = checkQuarterYear();
+
+                // 只在绩效评估（季度/年度）时检查是否被替代
+                if (isNewQuarter) {
+                    checkGameOver();
+                }
+
+                // 检查彩蛋成就
+                if (eventId === 25 || eventId === 26 || eventId >= 41) {
+                    unlockEasterAchievement();
+                }
+
+                // 显示薪资变化浮动动画
+                if (option.effects.salary) {
+                    const salaryChange = gameState.salary - previousSalary;
+                    if (salaryChange !== 0) {
+                        showSalaryChangeToast(salaryChange, gameState.salary);
+                    }
+                }
+
+                // 更新UI
+                updateUI();
+                console.log('UI updated');
+
+                // 检查新成就解锁
+                checkAndShowNewAchievements();
+
+                // 显示风险提示
+                if (option.effects.salary || option.effects.warnings || option.effects.rank) {
+                    const resultSection = document.getElementById('result-section');
+                    if (!resultSection) {
+                        // 如果DOM不存在，不显示结果
+                    } else {
+                        const currentSalaryK = Math.round(gameState.salary / 1000);
+                        let messages = [];
+
+                        if (option.effects.warnings) {
+                            if (option.effects.warnings > 0) {
+                                messages.push(`⚠️ 获得${option.effects.warnings}次警告`);
+                            } else {
+                                messages.push(`✅ 警告次数减少${Math.abs(option.effects.warnings)}`);
+                            }
+                        }
+                        if (option.effects.rank) {
+                            messages.push(`👔 职级晋升到 ${option.effects.rank}`);
+                            playSound('success');
+                        }
+
+                        const hiddenScore = calculateHiddenScore();
+                        let riskLevel = '';
+                        if (hiddenScore < 30) {
+                            riskLevel = '<p style="color: #d32f28; font-weight: bold; margin-top: 10px;">⚠️ 紧急警告：综合评分过低，本次评估非常危险！</p>';
+                        } else if (hiddenScore < 50) {
+                            riskLevel = '<p style="color: #f57c00; font-weight: bold; margin-top: 10px;">⚠️ 警告：综合评分偏低，请尽快提升！</p>';
+                        } else if (hiddenScore < 70) {
+                            riskLevel = '<p style="color: #666; margin-top: 10px;">ℹ️ 提示：还有提升空间</p>';
+                        } else {
+                            riskLevel = '<p style="color: #2e7d32; margin-top: 10px;">✅ 当前状态良好</p>';
+                        }
+
+                        if (messages.length > 0 || riskLevel) {
+                            resultSection.innerHTML = `
+                                <div class="result-card">
+                                    <div class="result-title">🎯 选择结果</div>
+                                    <div class="result-description">
+                                        ${messages.map(msg => `<p>${msg}</p>`).join('')}
+                                        ${riskLevel}
+                                    </div>
+                                </div>
+                            `;
+                            resultSection.style.display = 'block';
+                        } else {
+                            resultSection.style.display = 'none';
+                        }
+                    }
+                } else {
+                    const rs = document.getElementById('result-section');
+                    if (rs) rs.style.display = 'none';
+                }
+
+                // 播放点击音效
+                playSound('click');
+
+                // 立即生成下一个事件，没有任何延迟
+                console.log('Generating next event');
+                generateEvent();
+                console.log('Next event generated');
+            } catch(e) {
+                console.error('Error in chooseOption:', e);
+            } finally {
+                // 保证一定会重置，永远不会卡住
+                isProcessingChoice = false;
+            }
+        }
+        // 显示结果
+        function showResult(event, option) {
+            const resultSection = document.getElementById('result-section');
+            const eventSection = document.getElementById('event-section');
+
+            eventSection.style.display = 'none';
+            resultSection.style.display = 'block';
+
+            const effects = [];
+            if (option.effects.tech) effects.push(`技术能力${option.effects.tech > 0 ? '+' : ''}${option.effects.tech}`);
+            if (option.effects.social) effects.push(`人际关系${option.effects.social > 0 ? '+' : ''}${option.effects.social}`);
+            if (option.effects.innovation) effects.push(`创新能力${option.effects.innovation > 0 ? '+' : ''}${option.effects.innovation}`);
+            if (option.effects.salary) effects.push(`薪资${option.effects.salary > 0 ? '+' : ''}${option.effects.salary / 1000}k`);
+            if (option.effects.rank) effects.push(`职级晋升到${option.effects.rank}`);
+            if (option.effects.techMatch) effects.push(`技术匹配度${option.effects.techMatch > 0 ? '+' : ''}${option.effects.techMatch}`);
+            if (option.effects.teamContribution) effects.push(`团队贡献${option.effects.teamContribution > 0 ? '+' : ''}${option.effects.teamContribution}`);
+            if (option.effects.aiAdaptability) effects.push(`AI适应力${option.effects.aiAdaptability > 0 ? '+' : ''}${option.effects.aiAdaptability}`);
+            if (option.effects.marketValue) effects.push(`市场竞争力${option.effects.marketValue > 0 ? '+' : ''}${option.effects.marketValue}`);
+            if (option.effects.warnings) effects.push(`警告次数${option.effects.warnings > 0 ? '+' : ''}${option.effects.warnings}`);
+
+            // 计算新的替代概率
+            const replacementChance = calculateReplacementChance();
+            let riskLevel = '低';
+            if (replacementChance > 20) riskLevel = '中';
+            if (replacementChance > 40) riskLevel = '高';
+
+            resultSection.innerHTML = `
+                <div class="result-card">
+                    <div class="result-title">🎯 选择结果</div>
+                    <div class="result-description">
+                        <p>${option.text}</p>
+                        ${effects.length > 0 ? `
+                            <p style="margin-top: 10px; font-weight: 500;">✨ 效果：${effects.join(', ')}</p>
+                        ` : ''}
+                        <p style="margin-top: 10px; color: ${replacementChance > 20 ? (replacementChance > 40 ? '#d32f2f' : '#f57c00') : '#2e7d32'}">
+                            ⚠️ AI替代风险：${riskLevel} (${Math.round(replacementChance)}%)
+                        </p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 计算综合隐藏分
+        function calculateHiddenScore() {
+            return (
+                gameState.hiddenScores.techMatch * 0.4 +
+                gameState.hiddenScores.teamContribution * 0.3 +
+                gameState.hiddenScores.aiAdaptability * 0.2 +
+                gameState.hiddenScores.marketValue * 0.1
+            );
+        }
+
+        // 检查是否需要绩效评估
+        // 规则：每季度开始时制定OKR，180天(半年) 和 365天(年度) 才做正式绩效评估
+        function checkQuarterYear() {
+            // 每90天为一个季度
+            const currentQuarter = Math.floor(gameState.days / 90) + 1;
+            const currentYear = Math.floor((gameState.days - 1) / 365) + 1;
+
+            // 是否需要绩效评估：半年(>=180) 和 年度(>=365) 才评估
+            const needsPerformanceReview =
+                (gameState.days >= 180 && gameState.days - 7 < 180) || // 刚到180天
+                (gameState.days >= 365 && gameState.days - 7 < 365);    // 刚到365天
+
+            // 更新季度和年度
+            const quarterChanged = currentQuarter !== gameState.quarter || currentYear !== gameState.year;
+            gameState.quarter = currentQuarter;
+            gameState.year = currentYear;
+
+            // 返回true表示需要触发评估事件
+            return needsPerformanceReview;
+        }
+
+        // 计算被替代的概率
+        function calculateReplacementChance() {
+            // 计算综合隐藏分
+            const hiddenScore = calculateHiddenScore();
+
+            // 隐藏分越低，被替代的概率越高
+            let chance = Math.max(0, 80 - hiddenScore) * 0.8;
+
+            // 随着时间推移，AI能力提升，难度越来越大
+            chance += gameState.days / 180;
+
+            // 每年难度递增，越往后越难
+            chance += (gameState.year - 1) * 8;
+
+            // 早期保护机制（前30天不会被替代）
+            if (gameState.days < 30) chance = 0;
+
+            // 如果隐藏分很高，概率大大降低
+            if (hiddenScore >= 70) chance = chance * 0.3;
+
+            return Math.min(75, chance);
+        }
+
+        // 检查游戏是否结束（只在绩效评估时调用）
+        function checkGameOver() {
+            // 计算综合隐藏分和被替代的概率
+            const hiddenScore = calculateHiddenScore();
+            const replacementChance = calculateReplacementChance();
+            const random = Math.random() * 100;
+
+            console.log(`绩效评估 - 隐藏分: ${hiddenScore.toFixed(1)}, 替代概率: ${replacementChance.toFixed(1)}%`);
+
+            // 直接失败条件：隐藏分极低 或 警告次数过多（累计4次警告才直接淘汰）
+            if (hiddenScore < 30 || gameState.warnings >= 4) {
+                gameState.isGameOver = true;
+                gameState.gameResult = 'lose';
+                showGameOver();
+                return;
+            }
+
+            // 概率判定：评分低才有概率被替代，评分高几乎不可能
+            if (random < replacementChance && hiddenScore < 70) {
+                gameState.isGameOver = true;
+                gameState.gameResult = 'lose';
+                showGameOver();
+                return;
+            }
+
+            // 检查胜利条件（只有达到3年才强制结束，中途可以一直继续）
+            if (gameState.days >= 1095) {
+                gameState.isGameOver = true;
+                gameState.gameResult = 'win_long';
+                showGameOver();
+                return;
+            }
+
+            // 里程碑提示
+            if (gameState.days >= 90 && gameState.days < 180) {
+                showMilestone('恭喜你坚持了90天！你成功度过了第一个季度！');
+            } else if (gameState.days >= 180 && gameState.days < 270) {
+                showMilestone('恭喜你坚持了半年！继续加油！');
+            } else if (gameState.days >= 365 && gameState.days < 455) {
+                if (gameState.rank === 'P6') {
+                    showMilestone('🎉 恭喜坚持一整年并晋升P6！你可以继续挑战三年目标！');
+                } else {
+                    showMilestone('🎉 恭喜坚持了一整年！继续加油冲击P6！');
+                }
+            }
+        }
+
+        // 显示里程碑
+        function showMilestone(message) {
+            const milestoneSection = document.createElement('div');
+            milestoneSection.className = 'result-card';
+            milestoneSection.innerHTML = `
+                <div class="result-title">🎉 里程碑达成</div>
+                <div class="result-description">
+                    <p>${message}</p>
+                </div>
+            `;
+            const resultSection = document.getElementById('result-section');
+            resultSection.appendChild(milestoneSection);
+            resultSection.style.display = 'block';
+        }
+
+        // 显示游戏结束
+        function showGameOver() {
+            const gameContainer = document.getElementById('game-container');
+            const hiddenScore = calculateHiddenScore();
+            const avgSalary = Math.round(gameState.salary / 1000);
+            let content = '';
+
+            if (gameState.gameResult === 'lose') {
+                // 根据不同维度给出不同失败原因（职场黑话+趣味版）
+                const reasons = [];
+                const hiddenScore = calculateHiddenScore();
+
+                // PIP相关
+                if (gameState.warnings >= 3) {
+                    reasons.push('进入PIP后没有达到exit criteria');
+                    reasons.push('三次performance alert仍未improve');
+                    reasons.push('last chance机会没有把握住');
+                }
+                // AI能力极低彩蛋
+                if (gameState.hiddenScores.aiAdaptability < 20) {
+                    reasons.push('你拒绝使用AI，最终被AI蒸馏成了训练数据');
+                    reasons.push('你的工作被AI蒸馏成prompt template，不再需要人工');
+                    reasons.push('无法拥抱AI transformation，组织不需要顽固派');
+                }
+                // 技术匹配低
+                if (gameState.hiddenScores.techMatch < 20) {
+                    reasons.push('skill stack与tech roadmap方向不一致');
+                    reasons.push('你的domain expertise已经被AI learned');
+                }
+                // 团队贡献低
+                if (gameState.hiddenScores.teamContribution < 20) {
+                    reasons.push('impact不够，无法align团队OKR');
+                    reasons.push('你只是invisible member，没有不可替代性');
+                }
+                // 市场价值低
+                if (gameState.hiddenScores.marketValue < 20) {
+                    reasons.push('outside competitiveness不足，package与能力不匹配');
+                    reasons.push('性价比不如fresh grad，公司选择upgrade');
+                }
+                // 创新低
+                if (gameState.innovationSkill < 20) {
+                    reasons.push('只会maintainance，不会breakthrough');
+                    reasons.push('缺少curiosity，无法drive业务growth');
+                }
+                // 沟通低
+                if (gameState.socialSkill < 20) {
+                    reasons.push('stakeholder management有待提升');
+                    reasons.push('alignment能力不足，影响team efficiency');
+                }
+                // 身体/家庭彩蛋
+                if (gameState.days > 500 && gameState.warnings >= 2) {
+                    if (gameState.innovationSkill < 40 && gameState.techSkill < 40) {
+                        reasons.push('持续996导致health issue，不得不exit');
+                        reasons.push('家庭需要更多time commitment，选择躺平出局');
+                        reasons.push('burnout了，身体需要真正的restart');
+                    }
+                }
+                // 高薪低能
+                if (gameState.salary > 80000 && hiddenScore < 50) {
+                    reasons.push('cost optimization，high cost低ROI需要优化');
+                    reasons.push('你的package已经overpriced了');
+                }
+                // 纯卷王彩蛋 - 啥都好但就是熬不住了
+                if (gameState.salary > 70000 && hiddenScore > 70 && gameState.warnings >= 2) {
+                    reasons.push('卷赢了所有人，但卷没了身体健康');
+                }
+
+                // 如果没命中任何特殊原因，随机选一个通用原因
+                const generalReasons = [
+                    'organization restructure，你的position被cut了',
+                    'team downsizing，HC优化，很遗憾你在list里',
+                    'AI native transformation，old skill被慢慢淘汰',
+                    'quarterly calibration排在bottom bucket',
+                    'business pivoted，你的capability无法align新方向',
+                    'talent pool升级，需要更年轻化的blood',
+                    '360度peer feedback结果不太理想',
+                    'OKR未完成，impact没有达到expectation'
+                ];
+
+                if (reasons.length === 0) {
+                    reasons.push(generalReasons[Math.floor(Math.random() * generalReasons.length)]);
+                }
+
+                // 随机选一个原因显示
+                const finalReason = reasons[Math.floor(Math.random() * reasons.length)];
+
+                const shareText = `我在《AI替代危机：职场生存战》中坚持了${gameState.days}天，死因：${finalReason}`;
+                content = `
+                    <div class="game-over-screen">
+                        <h2>💀 你被优化了！</h2>
+                        <p style="font-size: 1.2rem; margin-bottom: 20px;">你坚持了${gameState.days}天，最终薪资 ${avgSalary}k</p>
+                        <p style="margin-bottom: 20px; color: #666;">${finalReason}。公司为了你好，放你一个长长的假期去寻找诗和远方！</p>
+                        <div style="margin-bottom: 25px; padding: 15px; background: #f5f5f5; border-radius: 10px;">
+                            <p style="margin-bottom: 10px; color: #666; font-size: 0.9rem;">📢 分享你的结局：</p>
+                            <input id="share-text" type="text" readonly value="${shareText.replace(/"/g, '&quot;')}" style="width: 80%; padding: 8px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 10px;">
+                            <button class="restart-button" style="padding: 8px 20px; font-size: 1rem; margin-top: 0;" onclick="copyShareText()">
+                                📋 复制分享文案
+                            </button>
+                        </div>
+                        <button class="restart-button" onclick="restartGame()">
+                            🔄 换家公司重新内卷
+                        </button>
+                    </div>
+                `;
+            } else if (gameState.gameResult === 'win_long') {
+                // 3年达成，看最终属性判断具体结局
+                if (gameState.rank === 'P7' || (hiddenScore >= 85 && gameState.hiddenScores.techMatch >= 80)) {
+                    // 技术专家结局
+                    content = `
+                        <div class="game-over-screen" style="color: #2e7d32;">
+                            <h2>👨‍🔬 技术专家结局达成！</h2>
+                            <p style="font-size: 1.2rem; margin-bottom: 20px;">你坚持了${gameState.days}天，最终薪资 ${avgSalary}k，职级 ${gameState.rank}</p>
+                            <p style="margin-bottom: 30px; color: #2e7d32;">你深耕技术领域，成为了公认的技术专家。AI只是你的助手，永远无法替代你的深度经验和洞察力。</p>
+                            <button class="restart-button" style="background: linear-gradient(135deg, #43a047 0%, #2e7d32 100%);" onclick="restartGame()">
+                                🔄 再玩一次
+                            </button>
+                        </div>
+                    `;
+                } else if (gameState.rank === 'M1' || gameState.hiddenScores.teamContribution >= 80) {
+                    // 管理路线结局
+                    content = `
+                        <div class="game-over-screen" style="color: #5c6bc0;">
+                            <h2>👔 技术管理者结局达成！</h2>
+                            <p style="font-size: 1.2rem; margin-bottom: 20px;">你坚持了${gameState.days}天，最终薪资 ${avgSalary}k，职级 ${gameState.rank}</p>
+                            <p style="margin-bottom: 30px; color: #5c6bc0;">你成功转型技术管理，带领团队做出了多个成功产品。你的领导力和沟通能力是AI无法复制的核心竞争力。</p>
+                            <button class="restart-button" style="background: linear-gradient(135deg, #5c6bc0 0%, #3949ab 100%);" onclick="restartGame()">
+                                🔄 再玩一次
+                            </button>
+                        </div>
+                    `;
+                } else if (gameState.hiddenScores.marketValue >= 85) {
+                    // 创业结局
+                    content = `
+                        <div class="game-over-screen" style="color: #ff8f00;">
+                            <h2>🚀 创业成功结局达成！</h2>
+                            <p style="font-size: 1.2rem; margin-bottom: 20px;">你坚持了${gameState.days}天，最终拿到融资估值过亿</p>
+                            <p style="margin-bottom: 30px; color: #ff8f00;">你抓住了AI时代的风口，成功创业。市场认可了你的价值，你成为了新一代的AI创业者。</p>
+                            <button class="restart-button" style="background: linear-gradient(135deg, #ff8f00 0%, #f57c00 100%);" onclick="restartGame()">
+                                🔄 再玩一次
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    // 默认传奇结局
+                    content = `
+                        <div class="game-over-screen" style="color: #2e7d32;">
+                            <h2>🏆 职场传奇！</h2>
+                            <p style="font-size: 1.2rem; margin-bottom: 20px;">你坚持了${gameState.days}天，最终薪资 ${avgSalary}k</p>
+                            <p style="margin-bottom: 30px; color: #2e7d32;">你成功在AI浪潮中生存了3年，成为了不可替代的核心员工。</p>
+                            <button class="restart-button" style="background: linear-gradient(135deg, #43a047 0%, #2e7d32 100%);" onclick="restartGame()">
+                                🔄 再玩一次
+                            </button>
+                        </div>
+                    `;
+                }
+            } else if (gameState.gameResult === 'win_medium') {
+                // 1年达成 P6
+                content = `
+                    <div class="game-over-screen" style="color: #f57c00;">
+                        <h2>🎊 职场精英！</h2>
+                        <p style="font-size: 1.2rem; margin-bottom: 20px;">你坚持了${gameState.days}天，最终薪资 ${avgSalary}k，成功晋升到${gameState.rank}</p>
+                        <p style="margin-bottom: 30px; color: #f57c00;">你成功在AI浪潮中生存了1年，证明了自己的价值，继续努力向三年目标前进吧！</p>
+                        <button class="restart-button" style="background: linear-gradient(135deg, #f57c00 0%, #ef6c00 100%);" onclick="restartGame()">
+                            🎯 继续挑战三年目标
+                        </button>
+                    </div>
+                `;
+            } else if (gameState.gameResult === 'freelancer') {
+                content = `
+                    <div class="game-over-screen" style="color: #00897b;">
+                        <h2>🌍 自由职业结局</h2>
+                        <p style="font-size: 1.2rem; margin-bottom: 20px;">你坚持了${gameState.days}天，月收入稳定 ${avgSalary}k</p>
+                        <p style="margin-bottom: 30px; color: #00897b;">你离开了大厂，成为了一名自由工作者。用AI提升效率，同时保持了工作生活平衡，活出了另一种可能。</p>
+                        <button class="restart-button" style="background: linear-gradient(135deg, #00897b 0%, #00695c 100%);" onclick="restartGame()">
+                            🔄 再玩一次
+                        </button>
+                    </div>
+                `;
+            } else if (gameState.gameResult === 'big_factory') {
+                content = `
+                    <div class="game-over-screen" style="color: #7b1fa2;">
+                        <h2>🏛️ 大厂专家结局</h2>
+                        <p style="font-size: 1.2rem; margin-bottom: 20px;">你成功跳槽到顶级互联网公司，薪资 ${avgSalary}k</p>
+                        <p style="margin-bottom: 30px; color: #7b1fa2;">你的能力得到了顶级公司的认可，成为了大厂的核心技术专家。你的职场路径越走越宽。</p>
+                        <button class="restart-button" style="background: linear-gradient(135deg, #7b1fa2 0%, #4a148c 100%);" onclick="restartGame()">
+                            🔄 再玩一次
+                        </button>
+                    </div>
+                `;
+            }
+
+            gameContainer.innerHTML = content;
+            // 播放游戏结束音效
+            if (gameState.gameResult === 'lose') {
+                playSound('fail');
+            } else {
+                playSound('success');
+            }
+        }
+
+        // 重新开始游戏
+        window.restartGame = function() {
+            console.log('restartGame called');
+            isProcessingChoice = false;
+            startGame();
+        };
+
+        // 复制分享文案
+        function copyShareText() {
+            const textEl = document.getElementById('share-text');
+            if (!textEl) return;
+            textEl.select();
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(textEl.value).then(() => {
+                    alert('分享文案已复制！可以粘贴到朋友圈/群聊了');
+                });
+            } else {
+                document.execCommand('copy');
+                alert('分享文案已复制！可以粘贴到朋友圈/群聊了');
+            }
+        }
+
+        // 将所有函数暴露到全局作用域，确保onclick可以访问
+        window.updateUI = updateUI;
+        window.generateEvent = generateEvent;
+        window.getEvents = getEvents;
+        window.checkQuarterYear = checkQuarterYear;
+        window.checkGameOver = checkGameOver;
+        window.calculateHiddenScore = calculateHiddenScore;
+        window.calculateReplacementChance = calculateReplacementChance;
+        window.updateAchievements = updateAchievements;
+        window.unlockEasterAchievement = unlockEasterAchievement;
+        window.copyShareText = copyShareText;
+
+        // 页面加载完成后初始化音效
+        document.addEventListener('DOMContentLoaded', function() {
+            initSounds();
+        });
+    </script>
+
+    <!-- 百度统计 - 请替换成你自己的统计代码 -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?YOUR_BAIDU_STATISTICS_ID";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</body>
+</html>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2250%%22>🎮</text></svg>" />
