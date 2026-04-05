@@ -914,7 +914,7 @@
                         },
                         {
                             text: '无所谓，相信自己不会被裁',
-                            effects: { tech: +1, social: -5, teamContribution: -3, warnings: +2 }
+                            effects: { tech: +1, social: -5, teamContribution: -3, warnings: +1 }
                         }
                     ]
                 },
@@ -1297,7 +1297,7 @@
                         },
                         {
                             text: '那你让Claude来做这个项目啊',
-                            effects: { warnings: +2, social: -10 }
+                            effects: { warnings: +1, social: -10 }
                         },
                         {
                             text: '我用Claude提高产出，现在能做更多事情了',
@@ -1420,7 +1420,7 @@
                         },
                         {
                             text: '接受现状，摸鱼等退休',
-                            effects: { innovation: -10, aiAdaptability: -8, warnings: +2 }
+                            effects: { innovation: -10, aiAdaptability: -8, warnings: +1 }
                         }
                     ]
                 },
@@ -2224,8 +2224,8 @@
 
                 // 随机选一个原因显示
                 const finalReason = reasons[Math.floor(Math.random() * reasons.length)];
-
-                const shareText = `我在《AI替代危机：职场生存战》中坚持了${gameState.days}天，死因：${finalReason}`;
+                const gameUrl = 'https://supershen0916.github.io/ai-survival-game/simple-game.html';
+                const shareText = `我在《AI替代危机：职场生存战》中坚持了${gameState.days}天，死因：${finalReason}\n\n来试试你能活多久：${gameUrl}`;
                 content = `
                     <div class="game-over-screen">
                         <h2>💀 你被优化了！</h2>
