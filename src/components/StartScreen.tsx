@@ -77,7 +77,7 @@ export default function StartScreen({ onStart }: StartScreenProps) {
 
       {step === 'company' && (
         <>
-          <h2 className="text-2xl font-bold mb-6 text-gray-80">🏢 选择入职公司</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-800">🏢 选择入职公司</h2>
           <p className="text-gray-600 mb-4">
             不同类型的公司AI接受度和薪资待遇不同，可选
           </p>
