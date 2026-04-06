@@ -15,7 +15,7 @@
 
 # next.js
 /.next/
-/out/
+# /out/  # we copy contents to root for github-pages, don't ignore the copied files
 
 # production
 /build
