@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Noto_Sans_SC } from 'next/font/google';
 import './globals.css';
 
@@ -13,8 +13,6 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://ai-survival-game.vercel.app'),
   title: 'AI替代危机：职场生存战',
   description: '在AI浪潮中，你能坚持多久不被替代？一款文字冒险游戏，模拟程序员职场生存。',
-  themeColor: '#7c3aed',
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
   openGraph: {
     title: 'AI替代危机：职场生存战',
     description: '在AI浪潮中，你能坚持多久不被替代？来测一测你的职场生存力！',
@@ -28,6 +26,13 @@ export const metadata: Metadata = {
     description: '在AI浪潮中，你能坚持多久不被替代？',
     images: ['/og-image.png'],
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: '#7c3aed',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
