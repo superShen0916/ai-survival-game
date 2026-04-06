@@ -1,4 +1,4 @@
 :HL["/ai-survival-game/_next/static/chunks/12~spo5e968lm.css","style"]
 :HL["/ai-survival-game/_next/static/chunks/17yb0woiszvha.css","style"]
 :HL["/ai-survival-game/_next/static/media/feb57b2dc8f29018-s.p.13c9k6c3vhklu.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"jEk4OlS9Sj0ldHQ2slF2s"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"Wo4qwB23tPAZy-jBfdOBd"}

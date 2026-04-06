@@ -1,4 +1,4 @@
-# <h1 align="center">
+<h1 align="center">
 
 programmer.skill / AI替代危机：职场生存战
 
@@ -19,17 +19,15 @@ programmer.skill / AI替代危机：职场生存战
 
 ---
 
-<blockquote>
-<p align="center" style="font-size: 1.5em; font-weight: bold;">
-AI浪潮来了，卷还是不卷？<br>
-996还是准点走？拥抱AI还是拒绝AI？<br>
-工作重要还是家庭重要？<br>
-来玩一局，看看你能活多久。
-</p>
-</blockquote>
+> <p align="center" style="font-size: 1.5em; font-weight: bold;">
+> AI浪潮来了，卷还是不卷？<br>
+> 996还是准点走？拥抱AI还是拒绝AI？<br>
+> 工作重要还是家庭重要？<br>
+> 来玩一局，看看你能活多久。
+> </p>
 
 <p align="center">
-  <a href="https://ai-survival-game.vercel.app"><strong>🎮 立即在线玩</strong></a>
+  <a href="https://supershen0916.github.io/ai-survival-game/"><strong>🎮 立即在线玩</strong></a>
 </p>
 
 <p align="center">
@@ -154,7 +152,7 @@ npm run build
 
 生成的分享图长这样：
 
-![分享示例](/screenshot-example.png)
+![分享示例](https://raw.githubusercontent.com/superShen0916/ai-survival-game/main/screenshot-example.png)
 
 _带二维码，扫完直接开玩_
 
