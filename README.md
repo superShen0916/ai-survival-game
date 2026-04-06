@@ -2,31 +2,42 @@
   programmer.skill / AI替代危机：职场生存战
 </h1>
 
-<p align="center">
+---
+
+<blockquote align="center">
 <em>"你们搞大模型的说大模型要取代程序员，我信了。现在Claude Code装了，Copilot开了，API Key充了，你告诉我前端都AI生成了，后端都AI写需求分析了，测试都AI跑用例了，那我们什么时候被完全取代？"</em><br>
 <em>"I会一直盯着你，看你能坚持多少天不被优化！"</em>
-</p>
+</blockquote>
 
 <p align="center">
-  <span style="background: #555; color: #fff; padding: 2px 8px; border-radius: 4px;">License <span style="background: #fcd000; padding: 2px 8px; border-radius: 4px;">MIT</span></span>
-  <span style="background: #555; color: #fff; padding: 2px 8px; border-radius: 4px; margin-left: 4px;">Next.js <span style="background: #0070f3; padding: 2px 8px; border-radius: 4px;">16</span></span>
-  <span style="background: #555; color: #fff; padding: 2px 8px; border-radius: 4px; margin-left: 4px;">TypeScript <span style="background: #0070f3; padding: 2px 8px; border-radius: 4px;">5</span></span>
-  <span style="background: #555; color: #fff; padding: 2px 8px; border-radius: 4px; margin-left: 4px;">React <span style="background: #61dafb; color: #000; padding: 2px 8px; border-radius: 4px;">19</span></span>
-  <span style="background: #555; color: #fff; padding: 2px 8px; border-radius: 4px; margin-left: 4px;">🎮 Game <span style="background: #7e22ce; padding: 2px 8px; border-radius: 4px;">Text Adventure</span></span>
+<span style="background: #555; color: #fff; padding: 3px 8px; border-radius: 4px;">License</span>
+<span style="background: #fcd000; color: #000; padding: 3px 8px; border-radius: 4px;">MIT</span>
+<span style="background: #555; color: #fff; padding: 3px 8px; border-radius: 4px; margin-left: 4px;">Next.js</span>
+<span style="background: #0070f3; color: #fff; padding: 3px 8px; border-radius: 4px;">16</span>
+<span style="background: #555; color: #fff; padding: 3px 8px; border-radius: 4px; margin-left: 4px;">TypeScript</span>
+<span style="background: #0070f3; color: #fff; padding: 3px 8px; border-radius: 4px;">5</span>
+<span style="background: #555; color: #fff; padding: 3px 8px; border-radius: 4px; margin-left: 4px;">React</span>
+<span style="background: #61dafb; color: #000; padding: 3px 8px; border-radius: 4px;">19</span>
+<span style="background: #555; color: #fff; padding: 3px 8px; border-radius: 4px; margin-left: 4px;">🎮 Game</span>
+<span style="background: #7e22ce; color: #fff; padding: 3px 8px; border-radius: 4px;">Text Adventure</span>
 </p>
 
 ---
 
+<p align="center">
 本项目纯属娱乐，请勿带入现实
+</p>
 
 ---
 
-> <blockquote>
-> AI浪潮来了，卷还是不卷？996还是准点走？拥抱AI还是拒绝AI？工作重要还是家庭重要？来玩一局，看看你能活多久。
-> </blockquote>
+<blockquote>
+<p align="left" style="padding-left: 2em; font-size: 1.5em; color: #666;">
+AI浪潮来了，卷还是不卷？996还是准点走？拥抱AI还是拒绝AI？工作重要还是家庭重要？来玩一局，看看你能活多久。
+</p>
+</blockquote>
 
 <p align="center">
-  <a href="https://ai-survival-game.vercel.app"><strong>🎮 立即在线玩</strong></a>
+  <a href="https://ai-survival-game.vercel.app"><strong style="font-size: 1.5em; color: #0066cc;">🎮 立即在线玩</strong></a>
 </p>
 
 <p align="center">
