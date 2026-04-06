@@ -8,11 +8,11 @@
 </p>
 
 <p align="center">
-  <span style="display: inline-block; background: #555; color: #fff; padding: 2px 8px; border-radius: 4px;">License: <span style="color: #fff; background: #fcd000;">MIT</span></span>
-  <span style="display: inline-block; background: #555; color: #fff; padding: 2px 8px; border-radius: 4px; margin-left: 4px;">Next.js: <span style="color: #fff; background: #0070f3;">16</span></span>
-  <span style="display: inline-block; background: #555; color: #fff; padding: 2px 8px; border-radius: 4px; margin-left: 4px;">TypeScript: <span style="color: #fff; background: #0070f3;">5</span></span>
-  <span style="display: inline-block; background: #555; color: #fff; padding: 2px 8px; border-radius: 4px; margin-left: 4px;">React: <span style="color: #fff; background: #61dafb;">19</span></span>
-  <span style="display: inline-block; background: #555; color: #fff; padding: 2px 8px; border-radius: 4px; margin-left: 4px;">🎮 Game: <span style="color: #fff; background: #7e22ce;">Text Adventure</span></span>
+  <span style="background: #555; color: #fff; padding: 2px 8px; border-radius: 4px;">License <span style="background: #fcd000; padding: 2px 8px; border-radius: 4px;">MIT</span></span>
+  <span style="background: #555; color: #fff; padding: 2px 8px; border-radius: 4px; margin-left: 4px;">Next.js <span style="background: #0070f3; padding: 2px 8px; border-radius: 4px;">16</span></span>
+  <span style="background: #555; color: #fff; padding: 2px 8px; border-radius: 4px; margin-left: 4px;">TypeScript <span style="background: #0070f3; padding: 2px 8px; border-radius: 4px;">5</span></span>
+  <span style="background: #555; color: #fff; padding: 2px 8px; border-radius: 4px; margin-left: 4px;">React <span style="background: #61dafb; color: #000; padding: 2px 8px; border-radius: 4px;">19</span></span>
+  <span style="background: #555; color: #fff; padding: 2px 8px; border-radius: 4px; margin-left: 4px;">🎮 Game <span style="background: #7e22ce; padding: 2px 8px; border-radius: 4px;">Text Adventure</span></span>
 </p>
 
 ---
@@ -26,7 +26,7 @@
 > </blockquote>
 
 <p align="center">
-  <a href="https://ai-survival-game.vercel.app">🎮 立即在线玩</a>
+  <a href="https://ai-survival-game.vercel.app"><strong>🎮 立即在线玩</strong></a>
 </p>
 
 <p align="center">
