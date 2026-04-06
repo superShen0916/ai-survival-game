@@ -1,7 +1,12 @@
 self.__BUILD_MANIFEST = {
   "__rewrites": {
     "afterFiles": [],
-    "beforeFiles": [],
+    "beforeFiles": [
+      {
+        "source": "/ai-survival-game//_next/:path+",
+        "destination": "/ai-survival-game/_next/:path+"
+      }
+    ],
     "fallback": []
   },
   "sortedPages": [

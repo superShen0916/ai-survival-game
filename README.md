@@ -19,14 +19,14 @@ programmer.skill / AI替代危机：职场生存战
 
 ---
 
-> <blockquote>
-> <p align="center" style="font-size: 1.5em; font-weight: bold;">
-> AI浪潮来了，卷还是不卷？<br>
-> 996还是准点走？拥抱AI还是拒绝AI？<br>
-> 工作重要还是家庭重要？<br>
-> 来玩一局，看看你能活多久。
-> </p>
-> </blockquote>
+<blockquote>
+<p align="center" style="font-size: 1.5em; font-weight: bold;">
+AI浪潮来了，卷还是不卷？<br>
+996还是准点走？拥抱AI还是拒绝AI？<br>
+工作重要还是家庭重要？<br>
+来玩一局，看看你能活多久。
+</p>
+</blockquote>
 
 <p align="center">
   <a href="https://ai-survival-game.vercel.app"><strong>🎮 立即在线玩</strong></a>
