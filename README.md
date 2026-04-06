@@ -1,5 +1,7 @@
-<h1 align="center">
-  programmer.skill / AI替代危机：职场生存战
+# <h1 align="center">
+
+programmer.skill / AI替代危机：职场生存战
+
 </h1>
 
 <p align="center">
@@ -8,37 +10,21 @@
 </p>
 
 <p align="center">
-
-<span style="display: inline-block;">
-<span style="background: #555; color: #fff; padding: 6px 12px; border-radius: 8px 0 0 8px;">License</span><span style="background: #fcd000; color: #000; padding: 6px 12px; border-radius: 0 8px 8px 0;">MIT</span>
-</span>
-
-<span style="display: inline-block; margin-left: 8px;">
-<span style="background: #555; color: #fff; padding: 6px 12px; border-radius: 8px 0 0 8px;">Next.js</span><span style="background: #0070f3; color: #fff; padding: 6px 12px; border-radius: 0 8px 8px 0;">16</span>
-</span>
-
-<span style="display: inline-block; margin-left: 8px;">
-<span style="background: #555; color: #fff; padding: 6px 12px; border-radius: 8px 0 0 8px;">TypeScript</span><span style="background: #0070f3; color: #fff; padding: 6px 12px; border-radius: 0 8px 8px 0;">5</span>
-</span>
-
-<span style="display: inline-block; margin-left: 8px;">
-<span style="background: #555; color: #fff; padding: 6px 12px; border-radius: 8px 0 0 8px;">React</span><span style="background: #61dafb; color: #000; padding: 6px 12px; border-radius: 0 8px 8px 0;">19</span>
-</span>
-
-<span style="display: inline-block; margin-left: 8px;">
-<span style="background: #555; color: #fff; padding: 6px 12px; border-radius: 8px 0 0 8px;">🎮 Game</span><span style="background: #7e22ce; color: #fff; padding: 6px 12px; border-radius: 0 8px 8px 0;">Text Adventure</span>
-</span>
-
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
+  <img src="https://img.shields.io/badge/Next.js-16-blue.svg" alt="Next.js">
+  <img src="https://img.shields.io/badge/TypeScript-5-blue.svg" alt="TypeScript">
+  <img src="https://img.shields.io/badge/React-19-61DAFB.svg" alt="React">
+  <img src="https://img.shields.io/badge/Game-Text%20Adventure-7e22ce.svg" alt="Game">
 </p>
 
 ---
 
-> <div style="padding-left: 2em; font-size: 1.5em; color: #666;">
+> <blockquote>
 > AI浪潮来了，卷还是不卷？996还是准点走？拥抱AI还是拒绝AI？工作重要还是家庭重要？来玩一局，看看你能活多久。
-> </div>
+> </blockquote>
 
 <p align="center">
-  <a href="https://ai-survival-game.vercel.app"><strong style="font-size: 1.5em; color: #0066cc;">🎮 立即在线玩</strong></a>
+  <a href="https://ai-survival-game.vercel.app"><strong>🎮 立即在线玩</strong></a>
 </p>
 
 <p align="center">
