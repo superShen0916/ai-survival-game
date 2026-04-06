@@ -1,24 +1,37 @@
-# 🧟 programmer.skill / AI替代危机：职场生存战
+<h1 align="center">
+  programmer.skill / AI替代危机：职场生存战
+</h1>
+
+<p align="center">
+<em>"你们搞大模型的说大模型要取代程序员，我信了。现在Claude Code装了，Copilot开了，API Key充了，你告诉我前端都AI生成了，后端都AI写需求分析了，测试都AI跑用例了，那我们什么时候被完全取代？"</em><br>
+<em>"I会一直盯着你，看你能坚持多少天不被优化！"</em>
+</p>
+
+<p align="center">
+  <span style="display: inline-block; background: #555; color: #fff; padding: 2px 8px; border-radius: 4px;">License: <span style="color: #fff; background: #fcd000;">MIT</span></span>
+  <span style="display: inline-block; background: #555; color: #fff; padding: 2px 8px; border-radius: 4px; margin-left: 4px;">Next.js: <span style="color: #fff; background: #0070f3;">16</span></span>
+  <span style="display: inline-block; background: #555; color: #fff; padding: 2px 8px; border-radius: 4px; margin-left: 4px;">TypeScript: <span style="color: #fff; background: #0070f3;">5</span></span>
+  <span style="display: inline-block; background: #555; color: #fff; padding: 2px 8px; border-radius: 4px; margin-left: 4px;">React: <span style="color: #fff; background: #61dafb;">19</span></span>
+  <span style="display: inline-block; background: #555; color: #fff; padding: 2px 8px; border-radius: 4px; margin-left: 4px;">🎮 Game: <span style="color: #fff; background: #7e22ce;">Text Adventure</span></span>
+</p>
 
 ---
 
-"你们搞大模型的说大模型要取代程序员，我信了。现在Claude Code装了，Copilot开了，API Key充了，你告诉我前端都AI生成了，后端都AI写需求分析了，测试都AI跑用例了，那我们什么时候被完全取代？"
-
-"I会一直盯着你，看你能坚持多少天不被优化！"
-
-<p>
-
-<span>License: <img src="https://img.shields.io/badge/License-MIT-yellow" alt="MIT"></span>
-<span>Next.js: <img src="https://img.shields.io/badge/Next.js-16-blue" alt="Next.js 16"></span>
-<span>TypeScript: <img src="https://img.shields.io/badge/TypeScript-5-blue" alt="TypeScript 5"></span>
-<span>React: <img src="https://img.shields.io/badge/React-19-cyan" alt="React 19"></span>
-<span>🎮 Game: <img src="https://img.shields.io/badge/Text-Adventure-purple" alt="Text Adventure"></span>
-
-</p>
-
 本项目纯属娱乐，请勿带入现实
 
+---
+
+> <blockquote>
 > AI浪潮来了，卷还是不卷？996还是准点走？拥抱AI还是拒绝AI？工作重要还是家庭重要？来玩一局，看看你能活多久。
+> </blockquote>
+
+<p align="center">
+  <a href="https://ai-survival-game.vercel.app">🎮 立即在线玩</a>
+</p>
+
+<p align="center">
+  <a href="https://vercel.com/new/clone?repository-url=https://github.com/superShen0916/ai-survival-game"><img src="https://vercel.com/button" alt="Deploy with Vercel"/></a>
+</p>
 
 ---
 
@@ -33,13 +46,9 @@ AI正在吞噬职场，裁员潮一波接一波。作为一名程序员，你每
 
 每一个选择都会改变你的属性。**卷到极致健康崩了也会GG，躺平也能有躺平的结局。** 看看你最终是什么结局？
 
-[🎮 立即在线玩](https://ai-survival-game.vercel.app)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/superShen0916/ai-survival-game)
-
 ---
 
-## ✨ 特色功能
+## ✨ 特色亮点
 
 - 🎮 **120+ 精心设计的职场事件** - 从入职到退休，全旅程覆盖，每件事都像发生在你身边
 - 🏁 **21+ 不同结局** - 从被优化到技术专家，从自由职业年入百万到提前退休，人生有多种可能
@@ -71,7 +80,7 @@ AI正在吞噬职场，裁员潮一波接一波。作为一名程序员，你每
 
 ---
 
-## 🎯 一局多长时间？
+## ⏱️ 一局多久？
 
 现在每回合走**一周**，一般走到结局也就十几回合，三五分钟一局，摸鱼的时候玩刚好。
 
@@ -128,6 +137,26 @@ npm run build
 
 ---
 
+## 🔥 为什么这个游戏好玩？
+
+- **真实扎心** - 所有事件都是程序员日常天天遇到的，代入感拉满
+- **多种人生** - 你可以当卷王冲P7，也可以躺平平衡生活，都有对应结局
+- **三五分钟一局** - 摸鱼时间刚好玩完，适合分享朋友圈
+- **正能量价值观** - 不是只有卷赢才叫成功，健康快乐最重要
+- **纯静态零成本** - 直接打开就玩，不用注册不用登录
+
+---
+
+## 🎨 截图示例
+
+生成的分享图长这样：
+
+![分享示例](./public/screenshot-example.png)
+
+_带二维码，扫完直接开玩_
+
+---
+
 ## 🔧 技术栈
 
 - Next.js 16 + TypeScript 严格模式
@@ -140,16 +169,6 @@ npm run build
 
 ---
 
-## 📸 截图示例
-
-生成的分享图长这样：
-
-![分享示例](./public/screenshot-example.png)
-
-_带二维码，扫完直接开玩_
-
----
-
 ## 📝 License
 
 MIT
@@ -159,4 +178,8 @@ MIT
 > 这只是一个游戏，纯属娱乐，不代表任何真实立场。  
 > 人生有很多种活法，不管怎么选，开心最重要。
 
+---
+
+<p align="center">
 #AI替代危机 #职场 #文字冒险游戏 #前端项目 #Next.js #AI
+</p>
