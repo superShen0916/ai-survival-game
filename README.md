@@ -151,7 +151,7 @@ npm run build
 
 生成的分享图长这样：
 
-![分享示例](./public/screenshot-example.png)
+![分享示例](/screenshot-example.png)
 
 _带二维码，扫完直接开玩_
 
