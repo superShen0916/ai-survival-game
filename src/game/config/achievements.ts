@@ -1,0 +1,130 @@
+import type { Achievement } from "../types";
+
+export const defaultAchievements: Achievement[] = [
+  {
+    id: "ach-new",
+    label: "🏆 职场新人",
+    description: "开始你的职场生存之旅",
+    condition: () => true,
+    unlocked: true,
+  },
+  {
+    id: "ach-ai",
+    label: "🤖 AI协作大师",
+    description: "AI适应力达到80以上",
+    condition: (gameState) => gameState.hiddenScores.aiAdaptability >= 80,
+    unlocked: false,
+  },
+  {
+    id: "ach-quarter",
+    label: "💯 坚持一季度",
+    description: "成功生存90天",
+    condition: (gameState) => gameState.days >= 90,
+    unlocked: false,
+  },
+  {
+    id: "ach-year",
+    label: "📅 坚持一年",
+    description: "成功生存365天",
+    condition: (gameState) => gameState.days >= 365,
+    unlocked: false,
+  },
+  {
+    id: "ach-threeyears",
+    label: "🚀 三年生存者",
+    description: "成功生存1095天",
+    condition: (gameState) => gameState.days >= 1095,
+    unlocked: false,
+  },
+  {
+    id: "ach-p6",
+    label: "⭐️ P6晋升",
+    description: "成功晋升P6",
+    condition: (gameState) => ["P6", "P7", "M1"].includes(gameState.rank),
+    unlocked: false,
+  },
+  {
+    id: "ach-p7",
+    label: "🌟 P7技术专家",
+    description: "成功晋升P7",
+    condition: (gameState) => ["P7", "M1"].includes(gameState.rank),
+    unlocked: false,
+  },
+  {
+    id: "ach-manager",
+    label: "💼 管理岗",
+    description: "成为团队管理者",
+    condition: (gameState) => gameState.rank === "M1",
+    unlocked: false,
+  },
+  {
+    id: "ach-easter",
+    label: "🥚 找到彩蛋",
+    description: "发现隐藏的惊喜",
+    condition: () => false,
+    special: true,
+    unlocked: false,
+  },
+  {
+    id: "ach-million",
+    label: "💰 年薪百万",
+    description: "年薪达到百万",
+    condition: (gameState) => gameState.salary * 12 >= 1000000,
+    unlocked: false,
+  },
+  {
+    id: "ach-innovator",
+    label: "💡 创新大师",
+    description: "创新能力达到90",
+    condition: (gameState) => gameState.innovationSkill >= 90,
+    unlocked: false,
+  },
+  {
+    id: "ach-social",
+    label: "🤝 人脉王",
+    description: "人际关系达到90",
+    condition: (gameState) => gameState.socialSkill >= 90,
+    unlocked: false,
+  },
+  {
+    id: "ach-balance",
+    label: "⚖️ 生活平衡大师",
+    description: "健康和家庭都保持在80以上",
+    condition: (gameState) =>
+      gameState.hiddenScores.health >= 80 &&
+      gameState.hiddenScores.family >= 80,
+    unlocked: false,
+  },
+  {
+    id: "ach-ironman",
+    label: "💪 钢铁躯体",
+    description: "健康保持在90以上",
+    condition: (gameState) => gameState.hiddenScores.health >= 90,
+    unlocked: false,
+  },
+  {
+    id: "ach-family-first",
+    label: "👨‍👩‍👧 家庭最重要",
+    description: "家庭关系保持在90以上",
+    condition: (gameState) => gameState.hiddenScores.family >= 90,
+    unlocked: false,
+  },
+  {
+    id: "ach-viral",
+    label: "📣 传播者",
+    description: "分享游戏给朋友",
+    condition: () => false,
+    special: true,
+    unlocked: false,
+  },
+  {
+    id: "ach-fission",
+    label: "🌍 裂变专家",
+    description: "分享带来三个新玩家",
+    condition: () => false,
+    special: true,
+    unlocked: false,
+  },
+];
+
+export default defaultAchievements;

@@ -1,0 +1,133 @@
+import type { SkillNode, SkillCategory } from "../types";
+
+export const skillTree: SkillNode[] = [
+  // 技术方向
+  {
+    id: "tech-deep",
+    name: "深耕技术",
+    description: "深入钻研技术细节，提升技术匹配度",
+    icon: "🔧",
+    category: "tech",
+    effects: { techMatch: +10, techSkill: +5 },
+    unlocked: false,
+    pointsRequired: 1,
+  },
+  {
+    id: "tech-architecture",
+    name: "架构能力",
+    description: "提升系统架构设计能力",
+    icon: "🏗️",
+    category: "tech",
+    effects: { techMatch: +8, teamContribution: +8, marketValue: +5 },
+    unlocked: false,
+    pointsRequired: 2,
+  },
+  {
+    id: "tech-open-source",
+    name: "开源贡献",
+    description: "通过开源贡献提升个人影响力",
+    icon: "🌐",
+    category: "tech",
+    effects: { marketValue: +15, innovationSkill: +5 },
+    unlocked: false,
+    pointsRequired: 2,
+  },
+
+  // AI协作方向
+  {
+    id: "ai-prompt",
+    name: "提示词工程",
+    description: "精通AI提示词设计",
+    icon: "✍️",
+    category: "ai",
+    effects: { aiAdaptability: +12, techSkill: +3 },
+    unlocked: false,
+    pointsRequired: 1,
+  },
+  {
+    id: "ai-agent",
+    name: "AI代理管理",
+    description: "管理多个AI助手协同工作",
+    icon: "🤖",
+    category: "ai",
+    effects: { aiAdaptability: +15, teamContribution: +5, innovationSkill: +5 },
+    unlocked: false,
+    pointsRequired: 2,
+  },
+  {
+    id: "ai-innovation",
+    name: "AI驱动创新",
+    description: "用AI开创全新业务方向",
+    icon: "💡",
+    category: "ai",
+    effects: { innovationSkill: +15, aiAdaptability: +10, marketValue: +10 },
+    unlocked: false,
+    pointsRequired: 3,
+  },
+
+  // 社交方向
+  {
+    id: "social-networking",
+    name: "拓展人脉",
+    description: "积极建立行业人脉",
+    icon: "👥",
+    category: "social",
+    effects: { socialSkill: +10, marketValue: +5 },
+    unlocked: false,
+    pointsRequired: 1,
+  },
+  {
+    id: "social-management",
+    name: "向上管理",
+    description: "更好地与上级沟通",
+    icon: "📈",
+    category: "social",
+    effects: { teamContribution: +12, socialSkill: +8 },
+    unlocked: false,
+    pointsRequired: 2,
+  },
+  {
+    id: "social-crossfunc",
+    name: "跨部门协作",
+    description: "在跨部门合作中脱颖而出",
+    icon: "🤝",
+    category: "social",
+    effects: { teamContribution: +10, socialSkill: +10, innovationSkill: +5 },
+    unlocked: false,
+    pointsRequired: 2,
+  },
+
+  // 创新方向
+  {
+    id: "innovation-product",
+    name: "产品思维",
+    description: "培养产品创新思维",
+    icon: "📦",
+    category: "innovation",
+    effects: { innovationSkill: +10, teamContribution: +5 },
+    unlocked: false,
+    pointsRequired: 1,
+  },
+  {
+    id: "innovation-entrepreneur",
+    name: "创业精神",
+    description: "时刻准备创业",
+    icon: "🚀",
+    category: "innovation",
+    effects: { innovationSkill: +15, marketValue: +10 },
+    unlocked: false,
+    pointsRequired: 2,
+  },
+  {
+    id: "innovation-newbiz",
+    name: "新业务开拓",
+    description: "开创全新业务方向",
+    icon: "💎",
+    category: "innovation",
+    effects: { innovationSkill: +12, marketValue: +12, aiAdaptability: +5 },
+    unlocked: false,
+    pointsRequired: 3,
+  },
+];
+
+export default skillTree;
