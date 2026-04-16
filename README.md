@@ -6,7 +6,16 @@ programmer.skill / AI替代危机：职场生存战
 
 <p align="center">
 <em>"你们搞大模型的说大模型要取代程序员，我信了。现在Claude Code装了，Copilot开了，API Key充了，你告诉我前端都AI生成了，后端都AI写需求分析了，测试都AI跑用例了，那我们什么时候被完全取代？"</em><br>
-<em>"I会一直盯着你，看你能坚持多少天不被优化！"</em>
+<em>"AI会一直盯着你，看你能坚持多少天不被优化！"</em>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
+  <img src="https://img.shields.io/badge/Next.js-16-blue.svg" alt="Next.js">
+  <img src="https://img.shields.io/badge/TypeScript-5-blue.svg" alt="TypeScript">
+  <img src="https://img.shields.io/badge/React-19-61DAFB.svg" alt="React">
+  <img src="https://img.shields.io/badge/Claude%20Code-Agentic--development-purple.svg" alt="Claude Code">
+  <img src="https://img.shields.io/badge/Game-Text%20Adventure-7e22ce.svg" alt="Game">
 </p>
 
 <p align="center">
@@ -167,6 +176,7 @@ _带二维码，扫完直接开玩_
 - html2canvas 生成分享图
 - qrcode 生成二维码
 - 完全静态导出，零成本托管
+- 🤖 **Agentic development** - Content brainstorming and UI iteration assisted by Claude Code
 
 ---
 
